@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0,net45</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <LangVersion>10.0</LangVersion>
     <RootNamespace>escpos_sharp</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
