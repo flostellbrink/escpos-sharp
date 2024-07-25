@@ -21,4 +21,10 @@
     <ProjectReference Include="..\EscPosSharp\EscPosSharp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="expected\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

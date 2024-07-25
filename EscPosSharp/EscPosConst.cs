@@ -1,5 +1,3 @@
-global using static EscPosSharp.EscPosConst;
-
 namespace EscPosSharp
 {
     public abstract class EscPosConst

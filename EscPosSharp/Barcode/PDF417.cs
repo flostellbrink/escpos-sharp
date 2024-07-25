@@ -443,7 +443,7 @@ namespace EscPosSharp.Barcode
             bytes.WriteByte((byte)48); // cn
             bytes.WriteByte((byte)80); // fn
             bytes.WriteByte((byte)48); // m
-            var dataBytes = Encoding.UTF8.GetBytes(data);
+            var dataBytes = Encoding.ASCII.GetBytes(data);
             bytes.Write(dataBytes, 0, dataBytes.Length);
 
             // Function 081

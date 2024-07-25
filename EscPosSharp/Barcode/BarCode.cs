@@ -264,7 +264,7 @@ namespace EscPosSharp.Barcode
             bytes.WriteByte((byte)'k');
             bytes.WriteByte((byte)sytem.code);
 
-            var dataBytes = Encoding.UTF8.GetBytes(data);
+            var dataBytes = Encoding.ASCII.GetBytes(data);
             if (sytem.code <= 6)
             {
                 bytes.Write(dataBytes, 0, dataBytes.Length);

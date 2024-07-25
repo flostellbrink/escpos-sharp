@@ -285,6 +285,21 @@ namespace EscPosSharp
             return charsetName;
         }
 
+        private Encoding GetEncoding()
+        {
+            try
+            {
+                if (charsetName.StartsWith("cp"))
+                    return Encoding.GetEncoding(int.Parse(charsetName.Substring(2)));
+                return Encoding.GetEncoding(charsetName);
+            }
+            catch
+            {
+                // Silently fall back when charset is not supported
+                return Encoding.ASCII;
+            }
+        }
+
         /// <summary>
         /// Select character code table.
         /// Each table represent specifics codes for special characters, example when
@@ -349,8 +364,7 @@ namespace EscPosSharp
         {
             byte[] configBytes = style.GetConfigBytes();
             Write(configBytes, 0, configBytes.Length);
-            var encoding = Encoding.GetEncoding(charsetName);
-            var bytes = encoding.GetBytes(text);
+            var bytes = GetEncoding().GetBytes(text);
             this.outputStream.Write(bytes, 0, bytes.Length);
             return this;
         }
@@ -376,8 +390,7 @@ namespace EscPosSharp
         {
             byte[] configBytes = printModeStyle.GetConfigBytes();
             Write(configBytes, 0, configBytes.Length);
-            var encoding = Encoding.GetEncoding(charsetName);
-            var bytes = encoding.GetBytes(text);
+            var bytes = GetEncoding().GetBytes(text);
             this.outputStream.Write(bytes, 0, bytes.Length);
             return this;
         }
