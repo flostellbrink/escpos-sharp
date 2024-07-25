@@ -20,12 +20,10 @@ jobs:
           dotnet-version: 8.x
       - name: Install dependencies
         run: dotnet restore
-      - name: Build
-        run: dotnet build --configuration Release
       - name: Test
-        run: dotnet test --no-build --configuration Release
+        run: dotnet test
       - name: Publish
         run: |
           cp .\README.md .\EscPosSharp\
-          dotnet pack --no-build --configuration Release --output nupkgs
+          dotnet pack --configuration Release --output nupkgs
           dotnet nuget push .\nupkgs\*.nupkg --skip-duplicate --no-symbols true
