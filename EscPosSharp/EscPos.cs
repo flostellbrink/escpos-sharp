@@ -287,17 +287,7 @@ namespace EscPosSharp
 
         private Encoding GetEncoding()
         {
-            try
-            {
-                if (charsetName.StartsWith("cp"))
-                    return Encoding.GetEncoding(int.Parse(charsetName.Substring(2)));
-                return Encoding.GetEncoding(charsetName);
-            }
-            catch
-            {
-                // Silently fall back when charset is not supported
-                return Encoding.ASCII;
-            }
+            return Encoding.GetEncoding(charsetName);
         }
 
         /// <summary>
