@@ -2,22 +2,22 @@
  * Use of this source code is governed by the MIT license that can be
  * found in the LICENSE file.
  */
-using Com.Github.Anastaciocintra.Escpos.Image;
-using Java.Io;
-using Java.Util;
-using Com.Github.Anastaciocintra.Escpos.Barcode;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using static Com.Github.Anastaciocintra.Escpos.CharacterCodeTable;
-using static Com.Github.Anastaciocintra.Escpos.CutMode;
-using static Com.Github.Anastaciocintra.Escpos.PinConnector;
-using static Com.Github.Anastaciocintra.Escpos.Justification;
-using static Com.Github.Anastaciocintra.Escpos.FontName;
+using EscPos.Barcode;
+using EscPos.Image;
+using Java.Io;
+using Java.Util;
+using static EscPos.CharacterCodeTable;
+using static EscPos.CutMode;
+using static EscPos.FontName;
+using static EscPos.Justification;
+using static EscPos.PinConnector;
 
-namespace Com.Github.Anastaciocintra.Escpos
+namespace EscPos
 {
     /// <summary>
     /// Write some usual ESC/POS commands to the OutPutStream.<p>
@@ -35,90 +35,132 @@ namespace Com.Github.Anastaciocintra.Escpos
         {
             // CP437_USA_Standard_Europe(0, "cp437")
             CP437_USA_Standard_Europe,
+
             // Katakana(1)
             Katakana,
+
             // CP850_Multilingual(2, "cp850")
             CP850_Multilingual,
+
             // CP860_Portuguese(3, "cp860")
             CP860_Portuguese,
+
             // CP863_Canadian_French(4, "cp863")
             CP863_Canadian_French,
+
             // CP865_Nordic(5, "cp865")
             CP865_Nordic,
+
             // CP851_Greek(11)
             CP851_Greek,
+
             // CP853_Turkish(12)
             CP853_Turkish,
+
             // CP857_Turkish(13, "cp857")
             CP857_Turkish,
+
             // CP737_Greek(14, "cp737")
             CP737_Greek,
+
             // ISO8859_7_Greek(15, "iso8859_7")
             ISO8859_7_Greek,
+
             // WPC1252(16, "cp1252")
             WPC1252,
+
             // CP866_Cyrillic_2(17, "cp866")
             CP866_Cyrillic_2,
+
             // CP852_Latin2(18, "cp852")
             CP852_Latin2,
+
             // CP858_Euro(19, "cp858")
             CP858_Euro,
+
             // KU42_Thai(20)
             KU42_Thai,
+
             // TIS11_Thai(21)
             TIS11_Thai,
+
             // TIS18_Thai(26)
             TIS18_Thai,
+
             // TCVN_3_1_Vietnamese(30)
             TCVN_3_1_Vietnamese,
+
             // TCVN_3_2_Vietnamese(31)
             TCVN_3_2_Vietnamese,
+
             // PC720_Arabic(32)
             PC720_Arabic,
+
             // WPC775_BalticRim(33)
             WPC775_BalticRim,
+
             // CP855_Cyrillic(34, "cp855")
             CP855_Cyrillic,
+
             // CP861_Icelandic(35, "cp861")
             CP861_Icelandic,
+
             // CP862_Hebrew(36, "cp862")
             CP862_Hebrew,
+
             // CP864_Arabic(37, "cp864")
             CP864_Arabic,
+
             // CP869_Greek(38, "cp869")
             CP869_Greek,
+
             // ISO8859_2_Latin2(39, "iso8859_2")
             ISO8859_2_Latin2,
+
             // ISO8859_15_Latin9(40, "iso8859_15")
             ISO8859_15_Latin9,
+
             // CP1098_Farsi(41, "cp1098")
             CP1098_Farsi,
+
             // CP1118_Lithuanian(42)
             CP1118_Lithuanian,
+
             // CP1119_Lithuanian(43)
             CP1119_Lithuanian,
+
             // CP1125_Ukrainian(44)
             CP1125_Ukrainian,
+
             // WCP1250_Latin2(45, "cp1250")
             WCP1250_Latin2,
+
             // WCP1251_Cyrillic(46, "cp1251")
             WCP1251_Cyrillic,
+
             // WCP1253_Greek(47, "cp1253")
             WCP1253_Greek,
+
             // WCP1254_Turkish(48, "cp1254")
             WCP1254_Turkish,
+
             // WCP1255_Hebrew(49, "cp1255")
             WCP1255_Hebrew,
+
             // WCP1256_Arabic(50, "cp1256")
             WCP1256_Arabic,
+
             // WCP1257_BalticRim(51, "cp1257")
             WCP1257_BalticRim,
+
             // WCP1258_Vietnamese(52, "cp1258")
             WCP1258_Vietnamese,
+
             // KZ_1048_Kazakhstan(53)
             KZ_1048_Kazakhstan,
+
             // User_defined_page(255)
-            User_defined_page 
+            User_defined_page
 
             // --------------------
             // TODO enum body members
@@ -147,8 +189,9 @@ namespace Com.Github.Anastaciocintra.Escpos
         {
             // FULL(48)
             FULL,
+
             // PART(49)
-            PART 
+            PART
 
             // --------------------
             // TODO enum body members
@@ -175,8 +218,9 @@ namespace Com.Github.Anastaciocintra.Escpos
         {
             // Pin_2(48)
             Pin_2,
+
             // Pin_5(49)
-            Pin_5 
+            Pin_5
 
             // --------------------
             // TODO enum body members
@@ -200,6 +244,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#pulsePin(PinConnector, int, int)</remarks>
         protected OutputStream outputStream;
+
         /// <summary>
         /// values of character code table.
         /// </summary>
@@ -213,6 +258,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#pulsePin(PinConnector, int, int)</remarks>
         protected string charsetName;
+
         /// <summary>
         /// values of character code table.
         /// </summary>
@@ -226,6 +272,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#pulsePin(PinConnector, int, int)</remarks>
         protected Style style;
+
         /// <summary>
         /// values of character code table.
         /// </summary>
@@ -4026,9 +4073,16 @@ namespace Com.Github.Anastaciocintra.Escpos
         public virtual EscPos Info()
         {
             Properties properties = new Properties();
-            properties.Load(Objects.RequireNonNull(GetType().GetClassLoader().GetResourceAsStream("projectinfo.properties")));
+            properties.Load(
+                Objects.RequireNonNull(
+                    GetType().GetClassLoader().GetResourceAsStream("projectinfo.properties")
+                )
+            );
             string Version = properties.GetProperty("version");
-            Style title = new Style().SetFontSize(Style.FontSize._3, Style.FontSize._3).SetColorMode(Style.ColorMode.WhiteOnBlack).SetJustification(Justification.Center);
+            Style title = new Style()
+                .SetFontSize(Style.FontSize._3, Style.FontSize._3)
+                .SetColorMode(Style.ColorMode.WhiteOnBlack)
+                .SetJustification(Justification.Center);
             Write(title, "EscPos Coffee");
             Feed(5);
             WriteLF("java driver for ESC/POS commands.");

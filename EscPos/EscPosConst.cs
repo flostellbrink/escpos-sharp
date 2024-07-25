@@ -7,13 +7,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using static Com.Github.Anastaciocintra.Escpos.CharacterCodeTable;
-using static Com.Github.Anastaciocintra.Escpos.CutMode;
-using static Com.Github.Anastaciocintra.Escpos.PinConnector;
-using static Com.Github.Anastaciocintra.Escpos.Justification;
-using static Com.Github.Anastaciocintra.Escpos.FontName;
+using static EscPos.CharacterCodeTable;
+using static EscPos.CutMode;
+using static EscPos.FontName;
+using static EscPos.Justification;
+using static EscPos.PinConnector;
 
-namespace Com.Github.Anastaciocintra.Escpos
+namespace EscPos
 {
     public interface EscPosConst
     {
@@ -23,6 +23,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         public readonly int LF = 10;
         public readonly int ESC = 27;
         public readonly int GS = 29;
+
         /// <summary>
         /// Values for print justification.
         /// </summary>
@@ -31,10 +32,12 @@ namespace Com.Github.Anastaciocintra.Escpos
         {
             // Left_Default(48)
             Left_Default,
+
             // Center(49)
             Center,
+
             // Right(50)
-            Right 
+            Right
 
             // --------------------
             // TODO enum body members

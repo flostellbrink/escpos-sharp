@@ -2,28 +2,28 @@
  * Use of this source code is governed by the MIT license that can be
  * found in the LICENSE file.
  */
-using Com.Github.Anastaciocintra.Escpos;
+using EscPos;
 using Java.Io;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.CharacterCodeTable;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.CutMode;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.PinConnector;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.Justification;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.FontName;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.FontSize;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.Underline;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.ColorMode;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.BarCodeSystem;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.BarCodeHRIPosition;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.BarCodeHRIFont;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.PDF417ErrorLevel;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.PDF417Option;
+using static EscPos.Barcode.CharacterCodeTable;
+using static EscPos.Barcode.CutMode;
+using static EscPos.Barcode.PinConnector;
+using static EscPos.Barcode.Justification;
+using static EscPos.Barcode.FontName;
+using static EscPos.Barcode.FontSize;
+using static EscPos.Barcode.Underline;
+using static EscPos.Barcode.ColorMode;
+using static EscPos.Barcode.BarCodeSystem;
+using static EscPos.Barcode.BarCodeHRIPosition;
+using static EscPos.Barcode.BarCodeHRIFont;
+using static EscPos.Barcode.PDF417ErrorLevel;
+using static EscPos.Barcode.PDF417Option;
 
-namespace Com.Github.Anastaciocintra.Escpos.Barcode
+namespace EscPos.Barcode
 {
     /// <summary>
     /// Supply ESC/POS PDF417 bar-code commands

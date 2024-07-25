@@ -2,19 +2,19 @@
  * Use of this source code is governed by the MIT license that can be
  * found in the LICENSE file.
  */
-using Java.Io;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using static Com.Github.Anastaciocintra.Escpos.CharacterCodeTable;
-using static Com.Github.Anastaciocintra.Escpos.CutMode;
-using static Com.Github.Anastaciocintra.Escpos.PinConnector;
-using static Com.Github.Anastaciocintra.Escpos.Justification;
-using static Com.Github.Anastaciocintra.Escpos.FontName;
+using Java.Io;
+using static EscPos.CharacterCodeTable;
+using static EscPos.CutMode;
+using static EscPos.FontName;
+using static EscPos.Justification;
+using static EscPos.PinConnector;
 
-namespace Com.Github.Anastaciocintra.Escpos
+namespace EscPos
 {
     /// <summary>
     /// Supply ESC/POS text style with the set of Print Mode commands
@@ -33,8 +33,9 @@ namespace Com.Github.Anastaciocintra.Escpos
         {
             // Font_A_Default(0)
             Font_A_Default,
+
             // Font_B(1)
-            Font_B 
+            Font_B
 
             // --------------------
             // TODO enum body members
@@ -50,31 +51,37 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#setFontName(FontName)</remarks>
         protected FontName fontName;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
         /// <remarks>@see#setFontName(FontName)</remarks>
         protected bool bold;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
         /// <remarks>@see#setFontName(FontName)</remarks>
         protected bool underline;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
         /// <remarks>@see#setFontName(FontName)</remarks>
         protected bool doubleWidth;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
         /// <remarks>@see#setFontName(FontName)</remarks>
         protected bool doubleHeight;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
         /// <remarks>@see#setFontName(FontName)</remarks>
         protected Justification justification;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
@@ -370,7 +377,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// <p>
         /// ASCII ESC ! n
         /// <p>
-        /// 
+        ///
         /// <p>
         /// Select justification
         /// <p>

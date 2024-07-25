@@ -2,22 +2,22 @@
  * Use of this source code is governed by the MIT license that can be
  * found in the LICENSE file.
  */
-using Java.Io;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using static Com.Github.Anastaciocintra.Escpos.CharacterCodeTable;
-using static Com.Github.Anastaciocintra.Escpos.CutMode;
-using static Com.Github.Anastaciocintra.Escpos.PinConnector;
-using static Com.Github.Anastaciocintra.Escpos.Justification;
-using static Com.Github.Anastaciocintra.Escpos.FontName;
-using static Com.Github.Anastaciocintra.Escpos.FontSize;
-using static Com.Github.Anastaciocintra.Escpos.Underline;
-using static Com.Github.Anastaciocintra.Escpos.ColorMode;
+using Java.Io;
+using static EscPos.CharacterCodeTable;
+using static EscPos.ColorMode;
+using static EscPos.CutMode;
+using static EscPos.FontName;
+using static EscPos.FontSize;
+using static EscPos.Justification;
+using static EscPos.PinConnector;
+using static EscPos.Underline;
 
-namespace Com.Github.Anastaciocintra.Escpos
+namespace EscPos
 {
     /// <summary>
     /// Supply ESC/POS text style commands
@@ -34,10 +34,12 @@ namespace Com.Github.Anastaciocintra.Escpos
         {
             // Font_A_Default(48)
             Font_A_Default,
+
             // Font_B(49)
             Font_B,
+
             // Font_C(50)
-            Font_C 
+            Font_C
 
             // --------------------
             // TODO enum body members
@@ -60,20 +62,27 @@ namespace Com.Github.Anastaciocintra.Escpos
         {
             // _1(0)
             _1,
+
             // _2(1)
             _2,
+
             // _3(2)
             _3,
+
             // _4(3)
             _4,
+
             // _5(4)
             _5,
+
             // _6(5)
             _6,
+
             // _7(6)
             _7,
+
             // _8(7)
-            _8 
+            _8
 
             // --------------------
             // TODO enum body members
@@ -100,10 +109,12 @@ namespace Com.Github.Anastaciocintra.Escpos
         {
             // None_Default(48)
             None_Default,
+
             // OneDotThick(49)
             OneDotThick,
+
             // TwoDotThick(50)
-            TwoDotThick 
+            TwoDotThick
 
             // --------------------
             // TODO enum body members
@@ -134,8 +145,9 @@ namespace Com.Github.Anastaciocintra.Escpos
         {
             // BlackOnWhite_Default(0)
             BlackOnWhite_Default,
+
             // WhiteOnBlack(1)
-            WhiteOnBlack 
+            WhiteOnBlack
 
             // --------------------
             // TODO enum body members
@@ -163,6 +175,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected FontName fontName;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
@@ -180,6 +193,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected bool bold;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
@@ -197,6 +211,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected Underline underline;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
@@ -214,6 +229,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected FontSize fontWidth;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
@@ -231,6 +247,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected FontSize fontHeight;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
@@ -248,6 +265,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected Justification justification;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
@@ -265,6 +283,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected bool defaultLineSpacing;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
@@ -282,6 +301,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected int lineSpacing;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
@@ -299,6 +319,7 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// </summary>
         /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected ColorMode colorMode;
+
         /// <summary>
         /// Values of font name.
         /// </summary>
@@ -955,37 +976,37 @@ namespace Com.Github.Anastaciocintra.Escpos
         /// <p>
         /// ASCII ESC M n
         /// <p>
-        /// 
+        ///
         /// Turn emphasized(bold) mode on/off.
         /// <p>
         /// ASCII ESC E n
         /// <p>
-        /// 
+        ///
         /// set font size.
         /// <p>
         /// ASCII GS ! n
         /// <p>
-        /// 
+        ///
         /// select underline mode
         /// <p>
         /// ASCII ESC – n
         /// <p>
-        /// 
+        ///
         /// Select justification
         /// <p>
         /// ASCII ESC a n
         /// <p>
-        /// 
+        ///
         /// Select default line spacing
         /// <p>
         /// ASCII ESC 2
         /// <p>
-        /// 
+        ///
         /// Set line spacing
         /// <p>
         /// ASCII ESC 3 n
         /// <p>
-        /// 
+        ///
         /// Turn white/black reverse print mode on/off<p>
         /// ASCII GS B n
         /// </summary>
@@ -1034,7 +1055,6 @@ namespace Com.Github.Anastaciocintra.Escpos
                 bytes.Write('3');
                 bytes.Write(lineSpacing);
             }
-
 
             //
             bytes.Write(GS);

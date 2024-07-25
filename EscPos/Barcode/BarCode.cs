@@ -2,26 +2,26 @@
  * Use of this source code is governed by the MIT license that can be
  * found in the LICENSE file.
  */
-using Com.Github.Anastaciocintra.Escpos;
-using Java.Io;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.CharacterCodeTable;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.CutMode;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.PinConnector;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.Justification;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.FontName;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.FontSize;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.Underline;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.ColorMode;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.BarCodeSystem;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.BarCodeHRIPosition;
-using static Com.Github.Anastaciocintra.Escpos.Barcode.BarCodeHRIFont;
+using EscPos;
+using Java.Io;
+using static EscPos.Barcode.BarCodeHRIFont;
+using static EscPos.Barcode.BarCodeHRIPosition;
+using static EscPos.Barcode.BarCodeSystem;
+using static EscPos.Barcode.CharacterCodeTable;
+using static EscPos.Barcode.ColorMode;
+using static EscPos.Barcode.CutMode;
+using static EscPos.Barcode.FontName;
+using static EscPos.Barcode.FontSize;
+using static EscPos.Barcode.Justification;
+using static EscPos.Barcode.PinConnector;
+using static EscPos.Barcode.Underline;
 
-namespace Com.Github.Anastaciocintra.Escpos.Barcode
+namespace EscPos.Barcode
 {
     /// <summary>
     /// Supply ESC/POS BarCode commands
@@ -46,6 +46,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // UPCA(0, "\\d{11,12}$")
             UPCA,
+
             /// <summary>
             /// <code>regex: "^\\d{11,12}$"</code>
             /// </summary>
@@ -54,6 +55,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // UPCA_B(65, "^\\d{11,12}$")
             UPCA_B,
+
             /// <summary>
             /// <code>regex: "^\\d{6}$|^0{1}\\d{6,7}$|^0{1}\\d{10,11}$"</code>
             /// </summary>
@@ -62,6 +64,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // UPCE_A(1, "^\\d{6}$|^0{1}\\d{6,7}$|^0{1}\\d{10,11}$")
             UPCE_A,
+
             /// <summary>
             /// <code>regex: "^\\d{6}$|^0{1}\\d{6,7}$|^0{1}\\d{10,11}$"</code>
             /// </summary>
@@ -70,6 +73,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // UPCE_B(66, "^\\d{6}$|^0{1}\\d{6,7}$|^0{1}\\d{10,11}$")
             UPCE_B,
+
             /// <summary>
             /// <code>regex: "^\\d{12,13}$"</code>
             /// </summary>
@@ -78,6 +82,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // JAN13_A(2, "^\\d{12,13}$")
             JAN13_A,
+
             /// <summary>
             /// <code>regex: "^\\d{12,13}$"</code>
             /// </summary>
@@ -86,6 +91,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // JAN13_B(67, "^\\d{12,13}$")
             JAN13_B,
+
             /// <summary>
             /// <code>regex: "^\\d{7,8}$"</code>
             /// </summary>
@@ -94,6 +100,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // JAN8_A(3, "^\\d{7,8}$")
             JAN8_A,
+
             /// <summary>
             /// <code>regex: "^\\d{7,8}$"</code>
             /// </summary>
@@ -102,6 +109,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // JAN8_B(68, "^\\d{7,8}$")
             JAN8_B,
+
             /// <summary>
             /// <code>regex: "^[\\d\\p{Upper}\\ \\$\\%\\*\\+\\-\\.\\/]+$"</code>
             /// </summary>
@@ -110,6 +118,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // CODE39_A(4, "^[\\d\\p{Upper}\\ \\$\\%\\*\\+\\-\\.\\/]+$")
             CODE39_A,
+
             /// <summary>
             /// <code>regex: "^[\\d\\p{Upper}\\ \\$\\%\\*\\+\\-\\.\\/]+$"</code>
             /// </summary>
@@ -118,6 +127,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // CODE39_B(69, "^[\\d\\p{Upper}\\ \\$\\%\\*\\+\\-\\.\\/]+$")
             CODE39_B,
+
             /// <summary>
             /// <code>regex: "^([\\d]{2})+$"</code>
             /// </summary>
@@ -126,6 +136,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // ITF_A(5, "^([\\d]{2})+$")
             ITF_A,
+
             /// <summary>
             /// <code>regex: "^([\\d]{2})+$"</code>
             /// </summary>
@@ -134,6 +145,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // ITF_B(70, "^([\\d]{2})+$")
             ITF_B,
+
             /// <summary>
             /// <code>regex:  "^[A-Da-d][\\d\\$\\+\\-\\.\\/\\:]*[A-Da-d]$"</code>
             /// </summary>
@@ -142,6 +154,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // CODABAR_A(6, "^[A-Da-d][\\d\\$\\+\\-\\.\\/\\:]*[A-Da-d]$")
             CODABAR_A,
+
             /// <summary>
             /// <code>regex:  "^[A-Da-d][\\d\\$\\+\\-\\.\\/\\:]*[A-Da-d]$"</code>
             /// </summary>
@@ -150,6 +163,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // CODABAR_B(71, "^[A-Da-d][\\d\\$\\+\\-\\.\\/\\:]*[A-Da-d]$")
             CODABAR_B,
+
             /// <summary>
             /// <code>regex:  "^[\\x00-\\x7F]+$"</code>
             /// </summary>
@@ -158,6 +172,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // CODE93_Default(72, "^[\\x00-\\x7F]+$")
             CODE93_Default,
+
             /// <summary>
             /// <code>regex:  "^\\{[A-C][\\x00-\\x7F]+$"</code>
             /// </summary>
@@ -165,7 +180,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  * <code>regex:  "^\\{[A-C][\\x00-\\x7F]+$"</code>
             //  */
             // CODE128(73, "^\\{[A-C][\\x00-\\x7F]+$")
-            CODE128 
+            CODE128
 
             // --------------------
             // TODO enum body members
@@ -250,6 +265,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // NotPrinted_Default(48)
             NotPrinted_Default,
+
             /// <summary>
             /// Print the text above the bar-code
             /// </summary>
@@ -258,6 +274,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // AboveBarCode(49)
             AboveBarCode,
+
             /// <summary>
             /// Print the text below the bar-code
             /// </summary>
@@ -266,6 +283,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  */
             // BelowBarCode(50)
             BelowBarCode,
+
             /// <summary>
             /// Print the text above and below the bar-code
             /// </summary>
@@ -273,7 +291,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             //  * Print the text above and below the bar-code
             //  */
             // AboveAndBelowBarCode(51)
-            AboveAndBelowBarCode 
+            AboveAndBelowBarCode
 
             // --------------------
             // TODO enum body members
@@ -368,10 +386,12 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
         {
             // Font_A_Default(48)
             Font_A_Default,
+
             // Font_B(49)
             Font_B,
+
             // Font_C(50)
-            Font_C 
+            Font_C
 
             // --------------------
             // TODO enum body members
@@ -463,6 +483,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
         /// </summary>
         /// <remarks>@see#setHRIFont(BarCodeHRIFont)</remarks>
         protected BarCodeSystem sytem;
+
         /// <summary>
         /// Provides bar-code system. <p>
         /// Each system have one <code>regex</code> to help on validate data.
@@ -544,6 +565,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
         /// </summary>
         /// <remarks>@see#setHRIFont(BarCodeHRIFont)</remarks>
         protected int width;
+
         /// <summary>
         /// Provides bar-code system. <p>
         /// Each system have one <code>regex</code> to help on validate data.
@@ -625,6 +647,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
         /// </summary>
         /// <remarks>@see#setHRIFont(BarCodeHRIFont)</remarks>
         protected int height;
+
         /// <summary>
         /// Provides bar-code system. <p>
         /// Each system have one <code>regex</code> to help on validate data.
@@ -706,6 +729,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
         /// </summary>
         /// <remarks>@see#setHRIFont(BarCodeHRIFont)</remarks>
         protected BarCodeHRIPosition HRIPosition;
+
         /// <summary>
         /// Provides bar-code system. <p>
         /// Each system have one <code>regex</code> to help on validate data.
@@ -787,6 +811,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
         /// </summary>
         /// <remarks>@see#setHRIFont(BarCodeHRIFont)</remarks>
         protected BarCodeHRIFont HRIFont;
+
         /// <summary>
         /// Provides bar-code system. <p>
         /// Each system have one <code>regex</code> to help on validate data.
@@ -868,6 +893,7 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
         /// </summary>
         /// <remarks>@see#setHRIFont(BarCodeHRIFont)</remarks>
         protected Justification justification;
+
         /// <summary>
         /// Provides bar-code system. <p>
         /// Each system have one <code>regex</code> to help on validate data.
@@ -1645,22 +1671,22 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
         /// <returns>this object</returns>
         /// <summary>
         /// BarCode Assembly into ESC/POS bytes. <p>
-        /// 
+        ///
         /// Set bar code height <p>
         /// ASCII GS h n <p>
-        /// 
+        ///
         /// Set bar code width <p>
         /// ASCII GS w n <p>
-        /// 
+        ///
         /// Select print position of Human Readable Interpretation (HRI) characters <p>
         /// ASCII GS H n
-        /// 
+        ///
         /// Select font for HRI characters <p>
         /// ASCII GS f n
-        /// 
+        ///
         /// Select justification <p>
         /// ASCII ESC a n <p>
-        /// 
+        ///
         /// print BarCode <p>
         /// ASCII GS k m d1 ... dk <p>
         /// </summary>
@@ -1672,9 +1698,10 @@ namespace Com.Github.Anastaciocintra.Escpos.Barcode
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             if (!data.Matches(sytem.regex))
             {
-                throw new ArgumentException(String.Format("data must match with \"%s\"", sytem.regex));
+                throw new ArgumentException(
+                    String.Format("data must match with \"%s\"", sytem.regex)
+                );
             }
-
 
             //
             bytes.Write(GS);
