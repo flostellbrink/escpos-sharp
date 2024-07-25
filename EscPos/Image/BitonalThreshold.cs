@@ -1,30 +1,4 @@
-/*
- * Use of this source code is governed by the MIT license that can be
- * found in the LICENSE file.
- */
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using static EscPos.Image.CharacterCodeTable;
-using static EscPos.Image.CutMode;
-using static EscPos.Image.PinConnector;
-using static EscPos.Image.Justification;
-using static EscPos.Image.FontName;
-using static EscPos.Image.FontSize;
-using static EscPos.Image.Underline;
-using static EscPos.Image.ColorMode;
-using static EscPos.Image.BarCodeSystem;
-using static EscPos.Image.BarCodeHRIPosition;
-using static EscPos.Image.BarCodeHRIFont;
-using static EscPos.Image.PDF417ErrorLevel;
-using static EscPos.Image.PDF417Option;
-using static EscPos.Image.QRModel;
-using static EscPos.Image.QRErrorCorrectionLevel;
-using static EscPos.Image.BitImageMode;
-
-namespace EscPos.Image
+namespace EscPosSharp.Image
 {
     /// <summary>
     /// Implements bitonal using one threshold value.
@@ -32,6 +6,7 @@ namespace EscPos.Image
     public class BitonalThreshold : Bitonal
     {
         protected readonly int threshold;
+
         /// <summary>
         /// construct BitonalThreshold
         /// </summary>
@@ -47,10 +22,6 @@ namespace EscPos.Image
         }
 
         /// <summary>
-        /// construct BitonalThreshold
-        /// </summary>
-        /// <param name="threshold">unique threshold value with range 0 to 255.</param>
-        /// <summary>
         /// construct BitonalThreshold with default value.
         /// </summary>
         public BitonalThreshold()
@@ -59,14 +30,7 @@ namespace EscPos.Image
         }
 
         /// <summary>
-        /// construct BitonalThreshold
-        /// </summary>
-        /// <param name="threshold">unique threshold value with range 0 to 255.</param>
-        /// <summary>
-        /// construct BitonalThreshold with default value.
-        /// </summary>
-        /// <summary>
-        /// translate RGBA colors to 0 or 1 (print or not). <p>
+        /// translate RGBA colors to 0 or 1 (print or not).
         /// the return is based on threshold value.
         /// </summary>
         /// <param name="alpha">range from 0 to 255</param>

@@ -1,32 +1,4 @@
-/*
- * Use of this source code is governed by the MIT license that can be
- * found in the LICENSE file.
- */
-using Java.Io;
-using Java.Util;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using static EscPos.Image.CharacterCodeTable;
-using static EscPos.Image.CutMode;
-using static EscPos.Image.PinConnector;
-using static EscPos.Image.Justification;
-using static EscPos.Image.FontName;
-using static EscPos.Image.FontSize;
-using static EscPos.Image.Underline;
-using static EscPos.Image.ColorMode;
-using static EscPos.Image.BarCodeSystem;
-using static EscPos.Image.BarCodeHRIPosition;
-using static EscPos.Image.BarCodeHRIFont;
-using static EscPos.Image.PDF417ErrorLevel;
-using static EscPos.Image.PDF417Option;
-using static EscPos.Image.QRModel;
-using static EscPos.Image.QRErrorCorrectionLevel;
-using static EscPos.Image.BitImageMode;
-
-namespace EscPos.Image
+namespace EscPosSharp.Image
 {
     /// <summary>
     /// Supply raster patterns images
@@ -35,9 +7,10 @@ namespace EscPos.Image
     {
         protected readonly CoffeeImage image;
         protected readonly Bitonal bitonalAlgorithm;
-        protected ByteArrayOutputStream baCachedEscPosRaster = new ByteArrayOutputStream();
-        protected IList<ByteArrayOutputStream> CashedEscPosRasterRows_8 = new List();
-        protected IList<ByteArrayOutputStream> CachedEscPosRasterRows_24 = new List();
+        protected MemoryStream baCachedEscPosRaster = new();
+        protected List<MemoryStream> CashedEscPosRasterRows_8 = new();
+        protected List<MemoryStream> CachedEscPosRasterRows_24 = new();
+
         /// <summary>
         /// creates an EscPosImage
         /// </summary>
@@ -52,7 +25,9 @@ namespace EscPos.Image
 
         public virtual int GetHorizontalBytesOfRaster()
         {
-            return ((image.GetWidth() % 8) > 0) ? (image.GetWidth() / 8) + 1 : (image.GetWidth() / 8);
+            return ((image.GetWidth() % 8) > 0)
+                ? (image.GetWidth() / 8) + 1
+                : (image.GetWidth() / 8);
         }
 
         public virtual int GetWidthOfImageInBits()
@@ -67,19 +42,19 @@ namespace EscPos.Image
 
         public virtual int GetRasterSizeInBytes()
         {
-            if (baCachedEscPosRaster.Count > 0)
-                return baCachedEscPosRaster.Count;
+            if (baCachedEscPosRaster.Length > 0)
+                return (int)baCachedEscPosRaster.Length;
             baCachedEscPosRaster = Image2EscPosRaster();
-            return baCachedEscPosRaster.Count;
+            return (int)baCachedEscPosRaster.Length;
         }
 
         /// <summary>
-        /// get raster bytes of image in Rows pattern.<p>
+        /// get raster bytes of image in Rows pattern.
         /// Utilize cached bytes if available
         /// </summary>
         /// <param name="bitsPerColumn_8_or_24">possible values are 8 or 24</param>
         /// <returns>a list of rows in raster pattern</returns>
-        public virtual IList<ByteArrayOutputStream> GetRasterRows(int bitsPerColumn_8_or_24)
+        public virtual IList<MemoryStream> GetRasterRows(int bitsPerColumn_8_or_24)
         {
             if (bitsPerColumn_8_or_24 == 8)
             {
@@ -108,10 +83,10 @@ namespace EscPos.Image
         /// </summary>
         /// <param name="bitsPerColumn_8_or_24">possible values are 8 or 24</param>
         /// <returns>a list of rows in raster pattern</returns>
-        protected virtual IList<ByteArrayOutputStream> Image2Rows(int bitsPerColumn_8_or_24)
+        protected virtual List<MemoryStream> Image2Rows(int bitsPerColumn_8_or_24)
         {
-            IList<ByteArrayOutputStream> lRasterRows = new List();
-            IList<CoffeeImage> lRGBImageRows = new List();
+            var lRasterRows = new List<MemoryStream>();
+            var lRGBImageRows = new List<CoffeeImage>();
             for (int y = 0; y < image.GetHeight(); y += bitsPerColumn_8_or_24)
             {
                 int height = bitsPerColumn_8_or_24;
@@ -120,18 +95,18 @@ namespace EscPos.Image
                     height = image.GetHeight() - y;
                 }
 
-                CoffeeImage row = (CoffeeImage)image.GetSubimage(0, y, image.GetWidth(), height);
+                var row = image.GetSubimage(0, y, image.GetWidth(), height);
                 lRGBImageRows.Add(row);
             }
 
             int heightOffset = 0;
             foreach (CoffeeImage RGBRow in lRGBImageRows)
             {
-                ByteArrayOutputStream baColumBytes = new ByteArrayOutputStream();
+                var baColumBytes = new MemoryStream();
                 for (int x = 0; x < RGBRow.GetWidth(); x++)
                 {
                     int col = 0;
-                    int max_y = Integer.Min(bitsPerColumn_8_or_24, RGBRow.GetHeight());
+                    int max_y = Math.Min(bitsPerColumn_8_or_24, RGBRow.GetHeight());
                     int bit = 0;
                     int bitsWritten = 0;
                     for (int y = 0; y < max_y; y++)
@@ -141,7 +116,7 @@ namespace EscPos.Image
                         bit++;
                         if (bit == 8)
                         {
-                            baColumBytes.Write(col);
+                            baColumBytes.WriteByte((byte)col);
                             bitsWritten += 8;
                             col = 0;
                             bit = 0;
@@ -150,11 +125,11 @@ namespace EscPos.Image
 
                     if (bit > 0)
                     {
-                        baColumBytes.Write(col);
+                        baColumBytes.WriteByte((byte)col);
                         bitsWritten += 8;
                         while (bitsWritten < bitsPerColumn_8_or_24)
                         {
-                            baColumBytes.Write(0);
+                            baColumBytes.WriteByte((byte)0);
                             bitsWritten += 8;
                         }
                     }
@@ -168,20 +143,20 @@ namespace EscPos.Image
         }
 
         /// <summary>
-        /// get raster bytes of image. <p>
+        /// get raster bytes of image.
         /// Utilize cached bytes if available.
         /// </summary>
         /// <returns>bytes of raster image.</returns>
-        public virtual ByteArrayOutputStream GetRasterBytes()
+        public virtual MemoryStream GetRasterBytes()
         {
-            if (baCachedEscPosRaster.Count > 0)
+            if (baCachedEscPosRaster.Length > 0)
                 return baCachedEscPosRaster;
             baCachedEscPosRaster = Image2EscPosRaster();
             return baCachedEscPosRaster;
         }
 
         /// <summary>
-        /// Call the custom algorithm to determine print or not print on each coordinates. <p>
+        /// Call the custom algorithm to determine print or not print on each coordinates.
         /// </summary>
         /// <param name="x">the X coordinate of the image</param>
         /// <param name="y">the Y coordinate of the image</param>
@@ -199,9 +174,9 @@ namespace EscPos.Image
         /// transform RGB image in raster format.
         /// </summary>
         /// <returns>raster byte array</returns>
-        protected virtual ByteArrayOutputStream Image2EscPosRaster()
+        protected virtual MemoryStream Image2EscPosRaster()
         {
-            ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+            var byteArray = new MemoryStream();
             int Byte;
             int bit;
             for (int y = 0; y < image.GetHeight(); y++)
@@ -215,7 +190,7 @@ namespace EscPos.Image
                     bit++;
                     if (bit == 8)
                     {
-                        byteArray.Write(Byte);
+                        byteArray.WriteByte((byte)Byte);
                         Byte = 0;
                         bit = 0;
                     }
@@ -223,7 +198,7 @@ namespace EscPos.Image
 
                 if (bit > 0)
                 {
-                    byteArray.Write(Byte);
+                    byteArray.WriteByte((byte)Byte);
                 }
             }
 

@@ -1,30 +1,9 @@
-using Java.Awt.Image;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using static EscPos.Image.CharacterCodeTable;
-using static EscPos.Image.CutMode;
-using static EscPos.Image.PinConnector;
-using static EscPos.Image.Justification;
-using static EscPos.Image.FontName;
-using static EscPos.Image.FontSize;
-using static EscPos.Image.Underline;
-using static EscPos.Image.ColorMode;
-using static EscPos.Image.BarCodeSystem;
-using static EscPos.Image.BarCodeHRIPosition;
-using static EscPos.Image.BarCodeHRIFont;
-using static EscPos.Image.PDF417ErrorLevel;
-using static EscPos.Image.PDF417Option;
-using static EscPos.Image.QRModel;
-using static EscPos.Image.QRErrorCorrectionLevel;
-using static EscPos.Image.BitImageMode;
+using System.Drawing;
 
-namespace EscPos.Image
+namespace EscPosSharp.Image
 {
     /// <summary>
-    /// implements CoffeeImage using Java BufferedImage
+    /// implements CoffeeImage using System.Drawing.Bitmap
     /// </summary>
     /// <remarks>
     /// @seeCoffeeImage
@@ -32,30 +11,40 @@ namespace EscPos.Image
     /// </remarks>
     public class CoffeeImageImpl : CoffeeImage
     {
-        protected BufferedImage image;
-        public CoffeeImageImpl(BufferedImage image)
+        protected Bitmap image;
+
+        public CoffeeImageImpl(Bitmap image)
         {
             this.image = image;
         }
 
         public virtual int GetWidth()
         {
-            return image.GetWidth();
+            return image.Width;
         }
 
         public virtual int GetHeight()
         {
-            return image.GetHeight();
+            return image.Height;
         }
 
         public virtual CoffeeImage GetSubimage(int x, int y, int w, int h)
         {
-            return new CoffeeImageImpl(image.GetSubimage(x, y, w, h));
+            var newImage = new Bitmap(w, h);
+            using var graphics = Graphics.FromImage(newImage);
+            graphics.DrawImage(
+                image,
+                new Rectangle(0, 0, w, h),
+                new Rectangle(x, y, w, h),
+                GraphicsUnit.Pixel
+            );
+            return new CoffeeImageImpl(newImage);
         }
 
         public virtual int GetRGB(int x, int y)
         {
-            return image.GetRGB(x, y);
+            var pixel = image.GetPixel(x, y);
+            return (pixel.R << 16) | (pixel.G << 8) | pixel.B;
         }
     }
 }

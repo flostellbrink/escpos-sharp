@@ -1,23 +1,4 @@
-/*
- * Use of this source code is governed by the MIT license that can be
- * found in the LICENSE file.
- */
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using Java.Io;
-using static EscPos.CharacterCodeTable;
-using static EscPos.ColorMode;
-using static EscPos.CutMode;
-using static EscPos.FontName;
-using static EscPos.FontSize;
-using static EscPos.Justification;
-using static EscPos.PinConnector;
-using static EscPos.Underline;
-
-namespace EscPos
+namespace EscPosSharp
 {
     /// <summary>
     /// Supply ESC/POS text style commands
@@ -30,339 +11,101 @@ namespace EscPos
         /// Values of font name.
         /// </summary>
         /// <remarks>@see#setFontName(FontName)</remarks>
-        public enum FontName
+        public class FontName
         {
-            // Font_A_Default(48)
-            Font_A_Default,
+            public static FontName Font_A_Default = new FontName(48);
+            public static FontName Font_B = new FontName(49);
+            public static FontName Font_C = new FontName(50);
 
-            // Font_B(49)
-            Font_B,
+            public FontName(int value)
+            {
+                this.value = value;
+            }
 
-            // Font_C(50)
-            Font_C
-
-            // --------------------
-            // TODO enum body members
-            // public int value;
-            // private FontName(int value) {
-            //     this.value = value;
-            // }
-            // --------------------
+            public int value;
         }
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
         /// <summary>
         /// Values of font size.
         /// </summary>
         /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        public enum FontSize
+        public class FontSize
         {
-            // _1(0)
-            _1,
+            public static FontSize _1 = new FontSize(0);
+            public static FontSize _2 = new FontSize(1);
+            public static FontSize _3 = new FontSize(2);
+            public static FontSize _4 = new FontSize(3);
+            public static FontSize _5 = new FontSize(4);
+            public static FontSize _6 = new FontSize(5);
+            public static FontSize _7 = new FontSize(6);
+            public static FontSize _8 = new FontSize(7);
 
-            // _2(1)
-            _2,
+            public int value;
 
-            // _3(2)
-            _3,
-
-            // _4(3)
-            _4,
-
-            // _5(4)
-            _5,
-
-            // _6(5)
-            _6,
-
-            // _7(6)
-            _7,
-
-            // _8(7)
-            _8
-
-            // --------------------
-            // TODO enum body members
-            // public int value;
-            // private FontSize(int value) {
-            //     this.value = value;
-            // }
-            // --------------------
+            private FontSize(int value)
+            {
+                this.value = value;
+            }
         }
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
         /// <summary>
         /// values of underline style.
         /// </summary>
         /// <remarks>@see#setUnderline(Underline)</remarks>
-        public enum Underline
+        public class Underline
         {
-            // None_Default(48)
-            None_Default,
+            public static Underline None_Default = new Underline(48);
+            public static Underline OneDotThick = new Underline(49);
+            public static Underline TwoDotThick = new Underline(50);
 
-            // OneDotThick(49)
-            OneDotThick,
+            public int value;
 
-            // TwoDotThick(50)
-            TwoDotThick
-
-            // --------------------
-            // TODO enum body members
-            // public int value;
-            // private Underline(int value) {
-            //     this.value = value;
-            // }
-            // --------------------
+            private Underline(int value)
+            {
+                this.value = value;
+            }
         }
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
         /// <summary>
         /// values of color mode background / foreground reverse.
         /// </summary>
         /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        public enum ColorMode
+        public class ColorMode
         {
-            // BlackOnWhite_Default(0)
-            BlackOnWhite_Default,
+            public static ColorMode BlackOnWhite_Default = new ColorMode(0);
+            public static ColorMode WhiteOnBlack = new ColorMode(1);
 
-            // WhiteOnBlack(1)
-            WhiteOnBlack
+            public int value;
 
-            // --------------------
-            // TODO enum body members
-            // public int value;
-            // private ColorMode(int value) {
-            //     this.value = value;
-            // }
-            // --------------------
+            private ColorMode(int value)
+            {
+                this.value = value;
+            }
         }
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected FontName fontName;
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected bool bold;
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected Underline underline;
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected FontSize fontWidth;
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected FontSize fontHeight;
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected Justification justification;
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected bool defaultLineSpacing;
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected int lineSpacing;
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
         protected ColorMode colorMode;
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
         public Style()
         {
             Reset();
         }
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
         /// <summary>
         /// creates Style object with another Style instance values.
         /// </summary>
@@ -380,29 +123,6 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates Style object with another Style instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
         /// Reset values to default.
         /// </summary>
         public void Reset()
@@ -418,32 +138,6 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates Style object with another Style instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
         /// Set character font name.
         /// </summary>
         /// <param name="fontName">used on ESC M n</param>
@@ -456,38 +150,6 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates Style object with another Style instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC M n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
         /// Set emphasized mode on/off
         /// </summary>
         /// <param name="bold">used on ESC E n</param>
@@ -498,43 +160,6 @@ namespace EscPos
             return this;
         }
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates Style object with another Style instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC M n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set emphasized mode on/off
-        /// </summary>
-        /// <param name="bold">used on ESC E n</param>
-        /// <returns>this object</returns>
         /// <summary>
         /// set font size
         /// </summary>
@@ -550,50 +175,6 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates Style object with another Style instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC M n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set emphasized mode on/off
-        /// </summary>
-        /// <param name="bold">used on ESC E n</param>
-        /// <returns>this object</returns>
-        /// <summary>
-        /// set font size
-        /// </summary>
-        /// <param name="fontWidth">value used on GS ! n</param>
-        /// <param name="fontHeight">value used on GS ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
         /// Set underline mode.
         /// </summary>
         /// <param name="underline">value used on ESC – n</param>
@@ -605,56 +186,6 @@ namespace EscPos
             return this;
         }
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates Style object with another Style instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC M n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set emphasized mode on/off
-        /// </summary>
-        /// <param name="bold">used on ESC E n</param>
-        /// <returns>this object</returns>
-        /// <summary>
-        /// set font size
-        /// </summary>
-        /// <param name="fontWidth">value used on GS ! n</param>
-        /// <param name="fontHeight">value used on GS ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set underline mode.
-        /// </summary>
-        /// <param name="underline">value used on ESC – n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
         /// <summary>
         /// Set Justification for text.
         /// </summary>
@@ -668,67 +199,11 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates Style object with another Style instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC M n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set emphasized mode on/off
-        /// </summary>
-        /// <param name="bold">used on ESC E n</param>
-        /// <returns>this object</returns>
-        /// <summary>
-        /// set font size
-        /// </summary>
-        /// <param name="fontWidth">value used on GS ! n</param>
-        /// <param name="fontHeight">value used on GS ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set underline mode.
-        /// </summary>
-        /// <param name="underline">value used on ESC – n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set Justification for text.
-        /// </summary>
-        /// <param name="justification">value used on ESC a n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
         /// Set line spacing.
         /// </summary>
         /// <param name="lineSpacing">value used on ESC 3 n</param>
         /// <returns>this object</returns>
-        /// <exception cref="IllegalArgumentException">when lineSpacing is not between 0 and 255.</exception>
+        /// <exception cref="ArgumentException">when lineSpacing is not between 0 and 255.</exception>
         /// <remarks>@see#getConfigBytes()</remarks>
         public Style SetLineSpacing(int lineSpacing)
         {
@@ -743,69 +218,6 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates Style object with another Style instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC M n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set emphasized mode on/off
-        /// </summary>
-        /// <param name="bold">used on ESC E n</param>
-        /// <returns>this object</returns>
-        /// <summary>
-        /// set font size
-        /// </summary>
-        /// <param name="fontWidth">value used on GS ! n</param>
-        /// <param name="fontHeight">value used on GS ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set underline mode.
-        /// </summary>
-        /// <param name="underline">value used on ESC – n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set Justification for text.
-        /// </summary>
-        /// <param name="justification">value used on ESC a n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set line spacing.
-        /// </summary>
-        /// <param name="lineSpacing">value used on ESC 3 n</param>
-        /// <returns>this object</returns>
-        /// <exception cref="IllegalArgumentException">when lineSpacing is not between 0 and 255.</exception>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
         /// Reset line spacing to printer default used on ESC 2
         /// </summary>
         /// <returns>this object</returns>
@@ -818,74 +230,6 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates Style object with another Style instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC M n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set emphasized mode on/off
-        /// </summary>
-        /// <param name="bold">used on ESC E n</param>
-        /// <returns>this object</returns>
-        /// <summary>
-        /// set font size
-        /// </summary>
-        /// <param name="fontWidth">value used on GS ! n</param>
-        /// <param name="fontHeight">value used on GS ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set underline mode.
-        /// </summary>
-        /// <param name="underline">value used on ESC – n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set Justification for text.
-        /// </summary>
-        /// <param name="justification">value used on ESC a n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set line spacing.
-        /// </summary>
-        /// <param name="lineSpacing">value used on ESC 3 n</param>
-        /// <returns>this object</returns>
-        /// <exception cref="IllegalArgumentException">when lineSpacing is not between 0 and 255.</exception>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Reset line spacing to printer default used on ESC 2
-        /// </summary>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
         /// set color mode background / foreground reverse.
         /// </summary>
         /// <param name="colorMode">value used on GS B n</param>
@@ -897,170 +241,98 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// Values of font size.
-        /// </summary>
-        /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
-        /// <summary>
-        /// values of underline style.
-        /// </summary>
-        /// <remarks>@see#setUnderline(Underline)</remarks>
-        /// <summary>
-        /// values of color mode background / foreground reverse.
-        /// </summary>
-        /// <remarks>@see#setColorMode(ColorMode)</remarks>
-        /// <summary>
-        /// creates Style object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates Style object with another Style instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC M n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set emphasized mode on/off
-        /// </summary>
-        /// <param name="bold">used on ESC E n</param>
-        /// <returns>this object</returns>
-        /// <summary>
-        /// set font size
-        /// </summary>
-        /// <param name="fontWidth">value used on GS ! n</param>
-        /// <param name="fontHeight">value used on GS ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set underline mode.
-        /// </summary>
-        /// <param name="underline">value used on ESC – n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set Justification for text.
-        /// </summary>
-        /// <param name="justification">value used on ESC a n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set line spacing.
-        /// </summary>
-        /// <param name="lineSpacing">value used on ESC 3 n</param>
-        /// <returns>this object</returns>
-        /// <exception cref="IllegalArgumentException">when lineSpacing is not between 0 and 255.</exception>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Reset line spacing to printer default used on ESC 2
-        /// </summary>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// set color mode background / foreground reverse.
-        /// </summary>
-        /// <param name="colorMode">value used on GS B n</param>
-        /// <returns>this object</returns>
-        /// <summary>
         /// Configure font Style.
-        /// <p>
+        ///
         /// Select character font.
-        /// <p>
+        ///
         /// ASCII ESC M n
-        /// <p>
+        ///
         ///
         /// Turn emphasized(bold) mode on/off.
-        /// <p>
+        ///
         /// ASCII ESC E n
-        /// <p>
+        ///
         ///
         /// set font size.
-        /// <p>
+        ///
         /// ASCII GS ! n
-        /// <p>
+        ///
         ///
         /// select underline mode
-        /// <p>
+        ///
         /// ASCII ESC – n
-        /// <p>
+        ///
         ///
         /// Select justification
-        /// <p>
+        ///
         /// ASCII ESC a n
-        /// <p>
+        ///
         ///
         /// Select default line spacing
-        /// <p>
+        ///
         /// ASCII ESC 2
-        /// <p>
+        ///
         ///
         /// Set line spacing
-        /// <p>
-        /// ASCII ESC 3 n
-        /// <p>
         ///
-        /// Turn white/black reverse print mode on/off<p>
+        /// ASCII ESC 3 n
+        ///
+        ///
+        /// Turn white/black reverse print mode on/off
         /// ASCII GS B n
         /// </summary>
         /// <returns>ESC/POS commands to configure style</returns>
         /// <exception cref="IOException">if an I/O error occurs.</exception>
         public virtual byte[] GetConfigBytes()
         {
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            using var bytes = new MemoryStream();
 
             //
-            bytes.Write(ESC);
-            bytes.Write('M');
-            bytes.Write(fontName.value);
+            bytes.WriteByte((byte)ESC);
+            bytes.WriteByte((byte)'M');
+            bytes.WriteByte((byte)fontName.value);
 
             //
-            bytes.Write(ESC);
-            bytes.Write('E');
+            bytes.WriteByte((byte)ESC);
+            bytes.WriteByte((byte)'E');
             int n = bold ? 1 : 0;
-            bytes.Write(n);
+            bytes.WriteByte((byte)n);
 
             //
             n = fontWidth.value << 4 | fontHeight.value;
-            bytes.Write(GS);
-            bytes.Write('!');
-            bytes.Write(n);
+            bytes.WriteByte((byte)GS);
+            bytes.WriteByte((byte)'!');
+            bytes.WriteByte((byte)n);
 
             //
-            bytes.Write(ESC);
-            bytes.Write('-');
-            bytes.Write(underline.value);
+            bytes.WriteByte((byte)ESC);
+            bytes.WriteByte((byte)'-');
+            bytes.WriteByte((byte)underline.value);
 
             //
-            bytes.Write(ESC);
-            bytes.Write('a');
-            bytes.Write(justification.value);
+            bytes.WriteByte((byte)ESC);
+            bytes.WriteByte((byte)'a');
+            bytes.WriteByte((byte)justification.value);
 
             //
             if (defaultLineSpacing)
             {
-                bytes.Write(ESC);
-                bytes.Write('2');
+                bytes.WriteByte((byte)ESC);
+                bytes.WriteByte((byte)'2');
             }
             else
             {
-                bytes.Write(ESC);
-                bytes.Write('3');
-                bytes.Write(lineSpacing);
+                bytes.WriteByte((byte)ESC);
+                bytes.WriteByte((byte)'3');
+                bytes.WriteByte((byte)lineSpacing);
             }
 
             //
-            bytes.Write(GS);
-            bytes.Write('B');
-            bytes.Write(colorMode.value);
-            return bytes.ToByteArray();
+            bytes.WriteByte((byte)GS);
+            bytes.WriteByte((byte)'B');
+            bytes.WriteByte((byte)colorMode.value);
+
+            return bytes.ToArray();
         }
     }
 }

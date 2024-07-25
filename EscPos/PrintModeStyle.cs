@@ -1,20 +1,4 @@
-/*
- * Use of this source code is governed by the MIT license that can be
- * found in the LICENSE file.
- */
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using Java.Io;
-using static EscPos.CharacterCodeTable;
-using static EscPos.CutMode;
-using static EscPos.FontName;
-using static EscPos.Justification;
-using static EscPos.PinConnector;
-
-namespace EscPos
+namespace EscPosSharp
 {
     /// <summary>
     /// Supply ESC/POS text style with the set of Print Mode commands
@@ -29,21 +13,17 @@ namespace EscPos
         /// Values of font name.
         /// </summary>
         /// <remarks>@see#setFontName(FontName)</remarks>
-        public enum FontName
+        public class FontName
         {
-            // Font_A_Default(0)
-            Font_A_Default,
+            public static FontName Font_A_Default = new FontName(0);
+            public static FontName Font_B = new FontName(1);
 
-            // Font_B(1)
-            Font_B
+            public int value;
 
-            // --------------------
-            // TODO enum body members
-            // public int value;
-            // private FontName(int value) {
-            //     this.value = value;
-            // }
-            // --------------------
+            private FontName(int value)
+            {
+                this.value = value;
+            }
         }
 
         /// <summary>
@@ -83,10 +63,6 @@ namespace EscPos
         protected Justification justification;
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
         /// creates PrintModeStyle object with default values.
         /// </summary>
         public PrintModeStyle()
@@ -94,13 +70,6 @@ namespace EscPos
             Reset();
         }
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// creates PrintModeStyle object with default values.
-        /// </summary>
         /// <summary>
         /// creates PrintModeStyle object with another PrintModeStyle instance values.
         /// </summary>
@@ -115,17 +84,6 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// creates PrintModeStyle object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates PrintModeStyle object with another PrintModeStyle instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
         /// Reset values to default.
         /// </summary>
         public void Reset()
@@ -136,20 +94,6 @@ namespace EscPos
             justification = Justification.Left_Default;
         }
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// creates PrintModeStyle object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates PrintModeStyle object with another PrintModeStyle instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
         /// <summary>
         /// Set character font name.
         /// </summary>
@@ -163,26 +107,6 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// creates PrintModeStyle object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates PrintModeStyle object with another PrintModeStyle instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
         /// Set emphasized mode on/off
         /// </summary>
         /// <param name="bold">used on ESC ! n</param>
@@ -193,31 +117,6 @@ namespace EscPos
             return this;
         }
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// creates PrintModeStyle object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates PrintModeStyle object with another PrintModeStyle instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set emphasized mode on/off
-        /// </summary>
-        /// <param name="bold">used on ESC ! n</param>
-        /// <returns>this object</returns>
         /// <summary>
         /// set font size
         /// </summary>
@@ -233,38 +132,6 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// creates PrintModeStyle object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates PrintModeStyle object with another PrintModeStyle instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set emphasized mode on/off
-        /// </summary>
-        /// <param name="bold">used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <summary>
-        /// set font size
-        /// </summary>
-        /// <param name="doubleWidth">value used on ESC ! n</param>
-        /// <param name="doubleHeight">value used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
         /// Set underline mode.
         /// </summary>
         /// <param name="underline">value used on ESC ! n</param>
@@ -276,44 +143,6 @@ namespace EscPos
             return this;
         }
 
-        /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// creates PrintModeStyle object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates PrintModeStyle object with another PrintModeStyle instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set emphasized mode on/off
-        /// </summary>
-        /// <param name="bold">used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <summary>
-        /// set font size
-        /// </summary>
-        /// <param name="doubleWidth">value used on ESC ! n</param>
-        /// <param name="doubleHeight">value used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set underline mode.
-        /// </summary>
-        /// <param name="underline">value used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
         /// <summary>
         /// Set Justification for text.
         /// </summary>
@@ -327,66 +156,22 @@ namespace EscPos
         }
 
         /// <summary>
-        /// Values of font name.
-        /// </summary>
-        /// <remarks>@see#setFontName(FontName)</remarks>
-        /// <summary>
-        /// creates PrintModeStyle object with default values.
-        /// </summary>
-        /// <summary>
-        /// creates PrintModeStyle object with another PrintModeStyle instance values.
-        /// </summary>
-        /// <param name="another">value to be copied.</param>
-        /// <summary>
-        /// Reset values to default.
-        /// </summary>
-        /// <summary>
-        /// Set character font name.
-        /// </summary>
-        /// <param name="fontName">used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set emphasized mode on/off
-        /// </summary>
-        /// <param name="bold">used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <summary>
-        /// set font size
-        /// </summary>
-        /// <param name="doubleWidth">value used on ESC ! n</param>
-        /// <param name="doubleHeight">value used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set underline mode.
-        /// </summary>
-        /// <param name="underline">value used on ESC ! n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
-        /// Set Justification for text.
-        /// </summary>
-        /// <param name="justification">value used on ESC a n</param>
-        /// <returns>this object</returns>
-        /// <remarks>@see#getConfigBytes()</remarks>
-        /// <summary>
         /// Configure font Style.
-        /// <p>
-        /// Selects the character font and styles (emphasize, double-height, double-width, and underline) together..
-        /// <p>
-        /// ASCII ESC ! n
-        /// <p>
         ///
-        /// <p>
+        /// Selects the character font and styles (emphasize, double-height, double-width, and underline) together..
+        ///
+        /// ASCII ESC ! n
+        ///
+        ///
+        ///
         /// Select justification
-        /// <p>
+        ///
         /// </summary>
         /// <returns>ESC/POS commands to configure style</returns>
         /// <exception cref="IOException">if an I/O error occurs.</exception>
         public virtual byte[] GetConfigBytes()
         {
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            using var bytes = new MemoryStream();
 
             // bit combination ...
             int nVal = fontName.value;
@@ -410,15 +195,16 @@ namespace EscPos
 
             //
             //
-            bytes.Write(EscPosConst.ESC);
-            bytes.Write('!');
-            bytes.Write(nVal);
+            bytes.WriteByte((byte)ESC);
+            bytes.WriteByte((byte)'!');
+            bytes.WriteByte((byte)nVal);
 
             //
-            bytes.Write(ESC);
-            bytes.Write('a');
-            bytes.Write(justification.value);
-            return bytes.ToByteArray();
+            bytes.WriteByte((byte)ESC);
+            bytes.WriteByte((byte)'a');
+            bytes.WriteByte((byte)justification.value);
+
+            return bytes.ToArray();
         }
     }
 }

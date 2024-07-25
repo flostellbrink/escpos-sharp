@@ -1,49 +1,23 @@
-/*
- * Use of this source code is governed by the MIT license that can be
- * found in the LICENSE file.
- */
-using Java.Lang.Math;
-using Java.Util;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using static EscPos.Image.CharacterCodeTable;
-using static EscPos.Image.CutMode;
-using static EscPos.Image.PinConnector;
-using static EscPos.Image.Justification;
-using static EscPos.Image.FontName;
-using static EscPos.Image.FontSize;
-using static EscPos.Image.Underline;
-using static EscPos.Image.ColorMode;
-using static EscPos.Image.BarCodeSystem;
-using static EscPos.Image.BarCodeHRIPosition;
-using static EscPos.Image.BarCodeHRIFont;
-using static EscPos.Image.PDF417ErrorLevel;
-using static EscPos.Image.PDF417Option;
-using static EscPos.Image.QRModel;
-using static EscPos.Image.QRErrorCorrectionLevel;
-using static EscPos.Image.BitImageMode;
-
-namespace EscPos.Image
+namespace EscPosSharp.Image
 {
     /// <summary>
-    /// Implements ordered dithering based on a <code>ditherMatrix</code> <p>
-    /// with size <code>matrixWidth</code> and <code>matrixHeight</code>. <p>
-    /// Each value of this <code>ditherMatrix</code> must be between 0 and 255. <p>
-    /// You can assemble the values of this matrix <p>
+    /// Implements ordered dithering based on a <code>ditherMatrix</code>
+    /// with size <code>matrixWidth</code> and <code>matrixHeight</code>.
+    /// Each value of this <code>ditherMatrix</code> must be between 0 and 255.
+    /// You can assemble the values of this matrix
     /// or the class can mount this array to the automatic values.
     /// </summary>
     public class BitonalOrderedDither : Bitonal
     {
         protected readonly string ErrorMatrixSize = "matrixWidth and matrixHeight must be > 0";
-        protected readonly string ErrorthreshoudVal = "values of threshould must be between 0 and 255";
-        protected int[, ] ditherMatrix;
+        protected readonly string ErrorthreshoudVal =
+            "values of threshould must be between 0 and 255";
+        protected int[,] ditherMatrix;
         protected readonly int matrixWidth;
         protected readonly int matrixHeight;
+
         /// <summary>
-        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> filled by zeros.<p>
+        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> filled by zeros.
         /// </summary>
         /// <param name="matrixWidth">width of <code>ditherMatrix</code> must be &gt; 0</param>
         /// <param name="matrixHeight">height of <code>ditherMatrix</code> must be &gt; 0</param>
@@ -65,19 +39,20 @@ namespace EscPos.Image
         }
 
         /// <summary>
-        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> filled by zeros.<p>
-        /// </summary>
-        /// <param name="matrixWidth">width of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <param name="matrixHeight">height of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <summary>
-        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> <p>
-        /// automatically filled with values between <code>threshouldMin</code> and <code>threshouldMax</code>.<p>
+        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code>
+        /// automatically filled with values between <code>threshouldMin</code> and <code>threshouldMax</code>.
         /// </summary>
         /// <param name="matrixWidth">width of <code>ditherMatrix</code> must be &gt; 0</param>
         /// <param name="matrixHeight">height of <code>ditherMatrix</code> must be &gt; 0</param>
         /// <param name="thresholdMin">min threshold must be between 0 and 255. 0 is lighter and 255 is darker.</param>
         /// <param name="thresholdMax">max threshold must be between 0 and 255. 0 is lighter and 255 is darker.</param>
-        public BitonalOrderedDither(int matrixWidth, int matrixHeight, int thresholdMin, int thresholdMax) : this(matrixWidth, matrixHeight)
+        public BitonalOrderedDither(
+            int matrixWidth,
+            int matrixHeight,
+            int thresholdMin,
+            int thresholdMax
+        )
+            : this(matrixWidth, matrixHeight)
         {
             if (thresholdMin < 0 || thresholdMin > 255)
             {
@@ -105,20 +80,15 @@ namespace EscPos.Image
             {
                 for (int y = 0; y < matrixHeight; y++)
                 {
-                    ditherMatrix[shuffledX[x]][shuffledY[y]] = Round(positionValue);
+                    ditherMatrix[shuffledX[x], shuffledY[y]] = (int)Math.Round(positionValue);
                     positionValue += valueToBeAddedOnEachPosition;
                 }
             }
         }
 
         /// <summary>
-        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> filled by zeros.<p>
-        /// </summary>
-        /// <param name="matrixWidth">width of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <param name="matrixHeight">height of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <summary>
-        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> <p>
-        /// automatically filled with values between <code>threshouldMin</code> and <code>threshouldMax</code>.<p>
+        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code>
+        /// automatically filled with values between <code>threshouldMin</code> and <code>threshouldMax</code>.
         /// </summary>
         /// <param name="matrixWidth">width of <code>ditherMatrix</code> must be &gt; 0</param>
         /// <param name="matrixHeight">height of <code>ditherMatrix</code> must be &gt; 0</param>
@@ -126,12 +96,12 @@ namespace EscPos.Image
         /// <param name="thresholdMax">max threshold must be between 0 and 255. 0 is lighter and 255 is darker.</param>
         private int[] Shuffle(int size, Random random)
         {
-            HashSet<int> set = new HashSet();
+            HashSet<int> set = new HashSet<int>();
             int[] intArray = new int[size];
             int i = 0;
             while (set.Count < size)
             {
-                int val = random.NextInt(size);
+                int val = random.Next(size);
                 if (set.Contains(val))
                 {
                     continue;
@@ -145,74 +115,23 @@ namespace EscPos.Image
         }
 
         /// <summary>
-        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> filled by zeros.<p>
-        /// </summary>
-        /// <param name="matrixWidth">width of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <param name="matrixHeight">height of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <summary>
-        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> <p>
-        /// automatically filled with values between <code>threshouldMin</code> and <code>threshouldMax</code>.<p>
-        /// </summary>
-        /// <param name="matrixWidth">width of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <param name="matrixHeight">height of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <param name="thresholdMin">min threshold must be between 0 and 255. 0 is lighter and 255 is darker.</param>
-        /// <param name="thresholdMax">max threshold must be between 0 and 255. 0 is lighter and 255 is darker.</param>
-        /// <summary>
         /// Creates a new BitonalOrderedDither with default values.
         /// </summary>
-        public BitonalOrderedDither() : this(2, 2, 64, 127)
-        {
-        }
+        public BitonalOrderedDither()
+            : this(2, 2, 64, 127) { }
 
-        /// <summary>
-        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> filled by zeros.<p>
-        /// </summary>
-        /// <param name="matrixWidth">width of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <param name="matrixHeight">height of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <summary>
-        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> <p>
-        /// automatically filled with values between <code>threshouldMin</code> and <code>threshouldMax</code>.<p>
-        /// </summary>
-        /// <param name="matrixWidth">width of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <param name="matrixHeight">height of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <param name="thresholdMin">min threshold must be between 0 and 255. 0 is lighter and 255 is darker.</param>
-        /// <param name="thresholdMax">max threshold must be between 0 and 255. 0 is lighter and 255 is darker.</param>
-        /// <summary>
-        /// Creates a new BitonalOrderedDither with default values.
-        /// </summary>
         /// <summary>
         /// Set ditherMatrix value.
         /// You can assemble special matrix, like watermark pattern.It's up to you.
         /// </summary>
         /// <param name="ditherMatrix">matrix filled by the user. Should be <code>new int[matrixWidth][matrixHeight]</code></param>
-        public virtual void SetDitherMatrix(int[, ] ditherMatrix)
+        public virtual void SetDitherMatrix(int[,] ditherMatrix)
         {
             this.ditherMatrix = ditherMatrix;
         }
 
         /// <summary>
-        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> filled by zeros.<p>
-        /// </summary>
-        /// <param name="matrixWidth">width of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <param name="matrixHeight">height of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <summary>
-        /// Creates a new BitonalOrderedDither with <code>ditherMatrix[matrixWidth][matrixHeight]</code> <p>
-        /// automatically filled with values between <code>threshouldMin</code> and <code>threshouldMax</code>.<p>
-        /// </summary>
-        /// <param name="matrixWidth">width of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <param name="matrixHeight">height of <code>ditherMatrix</code> must be &gt; 0</param>
-        /// <param name="thresholdMin">min threshold must be between 0 and 255. 0 is lighter and 255 is darker.</param>
-        /// <param name="thresholdMax">max threshold must be between 0 and 255. 0 is lighter and 255 is darker.</param>
-        /// <summary>
-        /// Creates a new BitonalOrderedDither with default values.
-        /// </summary>
-        /// <summary>
-        /// Set ditherMatrix value.
-        /// You can assemble special matrix, like watermark pattern.It's up to you.
-        /// </summary>
-        /// <param name="ditherMatrix">matrix filled by the user. Should be <code>new int[matrixWidth][matrixHeight]</code></param>
-        /// <summary>
-        /// translate RGBA colors to 0 or 1 (print or not). <p>
+        /// translate RGBA colors to 0 or 1 (print or not).
         /// the return is based on ditherMatrix values.
         /// </summary>
         /// <param name="alpha">range from 0 to 255</param>
@@ -231,7 +150,7 @@ namespace EscPos.Image
                 luminance = (red + green + blue) / 3;
             }
 
-            int threshold = ditherMatrix[x % matrixWidth][y % matrixHeight];
+            int threshold = ditherMatrix[x % matrixWidth, y % matrixHeight];
             return (luminance < threshold) ? 1 : 0;
         }
     }
