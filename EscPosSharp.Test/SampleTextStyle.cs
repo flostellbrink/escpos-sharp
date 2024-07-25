@@ -32,7 +32,12 @@ public class SampleTextStyle
             .Feed(8)
             .Cut(EscPos.CutMode.FULL);
 
+        var actual = result.ToArray();
         var expected = File.ReadAllBytes("expected/textstyle.txt");
-        Assert.That(result.ToArray(), Is.EqualTo(expected));
+
+        Directory.CreateDirectory("actual");
+        File.WriteAllBytes("actual/textstyle.txt", actual);
+
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

@@ -59,7 +59,12 @@ public class SampleBitImage
 
         escpos.Close();
 
+        var actual = result.ToArray();
         var expected = File.ReadAllBytes("expected/bitimage.txt");
-        Assert.That(result.ToArray(), Is.EqualTo(expected));
+
+        Directory.CreateDirectory("actual");
+        File.WriteAllBytes("actual/bitimage.txt", actual);
+
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

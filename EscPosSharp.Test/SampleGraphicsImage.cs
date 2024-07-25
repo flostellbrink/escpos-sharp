@@ -58,7 +58,12 @@ public class SampleGraphicsImage
         escpos.Feed(5);
         escpos.Cut(EscPos.CutMode.FULL);
 
+        var actual = result.ToArray();
         var expected = File.ReadAllBytes("expected/graphics-image.txt");
-        Assert.That(result.ToArray(), Is.EqualTo(expected));
+
+        Directory.CreateDirectory("actual");
+        File.WriteAllBytes("actual/graphics-image.txt", actual);
+
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

@@ -105,7 +105,12 @@ public class SampleBarcode
 
         escpos.Close();
 
-        var expected = File.ReadAllBytes("expected/bitimage.txt");
-        Assert.That(result.ToArray(), Is.EqualTo(expected));
+        var actual = result.ToArray();
+        var expected = File.ReadAllBytes("expected/barcode.txt");
+
+        Directory.CreateDirectory("actual");
+        File.WriteAllBytes("actual/barcode.txt", actual);
+
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

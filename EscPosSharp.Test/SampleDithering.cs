@@ -85,7 +85,12 @@ public class SampleDithering
         escpos.Feed(5);
         escpos.Cut(EscPos.CutMode.FULL);
 
+        var actual = result.ToArray();
         var expected = File.ReadAllBytes("expected/dithering.txt");
-        Assert.That(result.ToArray(), Is.EqualTo(expected));
+
+        Directory.CreateDirectory("actual");
+        File.WriteAllBytes("actual/dithering.txt", actual);
+
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }
