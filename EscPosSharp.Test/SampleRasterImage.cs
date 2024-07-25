@@ -12,8 +12,7 @@ public class SampleRasterImage
         using var escpos = new EscPos(result);
 
         Bitonal algorithm = new BitonalThreshold(127);
-        using var githubStream = new FileStream("expected/github.png", FileMode.Open);
-        var githubImage = (Bitmap)System.Drawing.Image.FromStream(githubStream);
+        var githubImage = (Bitmap)System.Drawing.Image.FromFile("expected/github.png");
         var escposImage = new EscPosImage(new CoffeeImageImpl(githubImage), algorithm);
 
         // this wrapper uses esc/pos sequence: "GS 'v' '0'"

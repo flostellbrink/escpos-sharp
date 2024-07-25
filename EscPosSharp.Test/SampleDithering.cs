@@ -11,8 +11,7 @@ public class SampleDithering
         using var result = new MemoryStream();
         using var escpos = new EscPos(result);
 
-        using var dogStream = new FileStream("expected/dog.png", FileMode.Open);
-        var dogImage = (Bitmap)System.Drawing.Image.FromStream(dogStream);
+        var dogImage = (Bitmap)System.Drawing.Image.FromFile("expected/dog.png");
 
         RasterBitImageWrapper imageWrapper = new RasterBitImageWrapper();
 
