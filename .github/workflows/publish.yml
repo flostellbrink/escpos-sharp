@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --no-build --configuration Release
       - name: Publish
         run: |
           cp .\README.md .\EscPosSharp\
