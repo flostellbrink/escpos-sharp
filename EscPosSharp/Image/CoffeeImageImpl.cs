@@ -46,10 +46,9 @@ namespace EscPosSharp.Image
             return new CoffeeImageImpl(newImage);
         }
 
-        public virtual int GetRGB(int x, int y)
+        public virtual int GetARGB(int x, int y)
         {
-            var pixel = image.GetPixel(x, y);
-            return (pixel.R << 16) | (pixel.G << 8) | pixel.B;
+            return image.GetPixel(x, y).ToArgb();
         }
     }
 }

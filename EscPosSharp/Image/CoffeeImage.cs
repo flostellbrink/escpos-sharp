@@ -42,6 +42,6 @@ namespace EscPosSharp.Image
         /// <param name="y">- the Y coordinate of the pixel from which to get the pixel in the default RGB color model and sRGB color space</param>
         /// <returns>an integer pixel in the default RGB color model and default sRGB colorspace.</returns>
         /// <remarks>@seeBufferedImage#getRGB(int, int)</remarks>
-        int GetRGB(int x, int y);
+        int GetARGB(int x, int y);
     }
 }

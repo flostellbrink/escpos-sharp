@@ -24,7 +24,7 @@ namespace EscPosSharp.Image
         /// <remarks>@see#zeroOrOne(int, int, int, int, int, int)</remarks>
         public virtual int GetBitonalVal(CoffeeImage image, int x, int y)
         {
-            int RGBA = image.GetRGB(x, y);
+            int RGBA = image.GetARGB(x, y);
             int alpha = (RGBA >> 24) & 0xFF;
             int red = (RGBA >> 16) & 0xFF;
             int green = (RGBA >> 8) & 0xFF;
