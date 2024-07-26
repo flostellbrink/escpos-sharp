@@ -9,11 +9,14 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>CS8618</NoWarn>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>1.0.1</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Version>1.0.2</Version>
+
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="..\README.md" Pack="true" PackagePath="" />
+    <None Include="..\LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
