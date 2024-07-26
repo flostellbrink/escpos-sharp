@@ -5,7 +5,7 @@ namespace EscPosSharp.Barcode;
 /// <summary>
 /// Supply ESC/POS QRCode bar-code commands
 /// </summary>
-public class QRCode : EscPosConst, BarCodeWrapperInterface<QRCode>
+public class QRCode : EscPosConst, BarCodeWrapperInterface
 {
     /// <summary>
     /// Values for QRCode model.
@@ -120,10 +120,9 @@ public class QRCode : EscPosConst, BarCodeWrapperInterface<QRCode>
     /// </summary>
     /// <param name="justification">left, center or right.</param>
     /// <returns>this object.</returns>
-    public virtual QRCode SetJustification(Justification justification)
+    public virtual void SetJustification(Justification justification)
     {
         this.justification = justification;
-        return this;
     }
 
     /// <summary>

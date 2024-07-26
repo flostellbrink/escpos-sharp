@@ -446,7 +446,7 @@ public class EscPos : EscPosConst, IDisposable
     /// <returns>this object</returns>
     /// <exception cref="IOException">if an I/O error occurs.</exception>
     /// <remarks>@seeBarCodeWrapperInterface</remarks>
-    public virtual EscPos Write<T>(BarCodeWrapperInterface<T> barcode, string data)
+    public virtual EscPos Write(BarCodeWrapperInterface barcode, string data)
     {
         Write(barcode.GetBytes(data));
         return this;

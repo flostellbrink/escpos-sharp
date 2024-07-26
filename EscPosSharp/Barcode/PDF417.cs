@@ -5,7 +5,7 @@ namespace EscPosSharp.Barcode;
 /// <summary>
 /// Supply ESC/POS PDF417 bar-code commands
 /// </summary>
-public class PDF417 : EscPosConst, BarCodeWrapperInterface<PDF417>
+public class PDF417 : EscPosConst, BarCodeWrapperInterface
 {
     /// <summary>
     /// Values of Error Correction Level.
@@ -161,10 +161,9 @@ public class PDF417 : EscPosConst, BarCodeWrapperInterface<PDF417>
     /// <param name="justification">left, center or right.</param>
     /// <returns>this object.</returns>
     /// <remarks>@see#getBytes(java.lang.String)</remarks>
-    public virtual PDF417 SetJustification(Justification justification)
+    public virtual void SetJustification(Justification justification)
     {
         this.justification = justification;
-        return this;
     }
 
     /// <summary>

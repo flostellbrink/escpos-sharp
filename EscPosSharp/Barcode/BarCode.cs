@@ -6,7 +6,7 @@ namespace EscPosSharp.Barcode;
 /// <summary>
 /// Supply ESC/POS BarCode commands
 /// </summary>
-public class BarCode : EscPosConst, BarCodeWrapperInterface<BarCode>
+public class BarCode : EscPosConst, BarCodeWrapperInterface
 {
     /// <summary>
     /// Provides bar-code system.
@@ -178,10 +178,9 @@ public class BarCode : EscPosConst, BarCodeWrapperInterface<BarCode>
     /// </summary>
     /// <param name="justification">left, center or right</param>
     /// <returns>this object</returns>
-    public virtual BarCode SetJustification(Justification justification)
+    public virtual void SetJustification(Justification justification)
     {
         this.justification = justification;
-        return this;
     }
 
     /// <summary>
