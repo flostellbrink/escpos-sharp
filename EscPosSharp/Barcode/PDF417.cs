@@ -17,47 +17,47 @@ namespace EscPosSharp.Barcode
             /// <summary>
             /// Error Level Zero.
             /// </summary>
-            public static PDF417ErrorLevel _0 = new PDF417ErrorLevel(48);
+            public static PDF417ErrorLevel _0 = new(48);
 
             /// <summary>
             /// Error Level One.
             /// </summary>
-            public static PDF417ErrorLevel _1_Default = new PDF417ErrorLevel(49);
+            public static PDF417ErrorLevel _1_Default = new(49);
 
             /// <summary>
             /// Error Level Two.
             /// </summary>
-            public static PDF417ErrorLevel _2 = new PDF417ErrorLevel(50);
+            public static PDF417ErrorLevel _2 = new(50);
 
             /// <summary>
             /// Error Level Tree.
             /// </summary>
-            public static PDF417ErrorLevel _3 = new PDF417ErrorLevel(51);
+            public static PDF417ErrorLevel _3 = new(51);
 
             /// <summary>
             /// Error Level Four.
             /// </summary>
-            public static PDF417ErrorLevel _4 = new PDF417ErrorLevel(52);
+            public static PDF417ErrorLevel _4 = new(52);
 
             /// <summary>
             /// Error Level Five.
             /// </summary>
-            public static PDF417ErrorLevel _5 = new PDF417ErrorLevel(53);
+            public static PDF417ErrorLevel _5 = new(53);
 
             /// <summary>
             /// Error Level Six.
             /// </summary>
-            public static PDF417ErrorLevel _6 = new PDF417ErrorLevel(54);
+            public static PDF417ErrorLevel _6 = new(54);
 
             /// <summary>
             /// Error Level Seven.
             /// </summary>
-            public static PDF417ErrorLevel _7 = new PDF417ErrorLevel(55);
+            public static PDF417ErrorLevel _7 = new(55);
 
             /// <summary>
             /// Error Level Eight.
             /// </summary>
-            public static PDF417ErrorLevel _8 = new PDF417ErrorLevel(56);
+            public static PDF417ErrorLevel _8 = new(56);
 
             public int value;
 
@@ -77,12 +77,12 @@ namespace EscPosSharp.Barcode
             /// <summary>
             /// Standard Default.
             /// </summary>
-            public static PDF417Option Standard_Default = new PDF417Option(0);
+            public static PDF417Option Standard_Default = new(0);
 
             /// <summary>
             /// Truncated.
             /// </summary>
-            public static PDF417Option Truncated = new PDF417Option(1);
+            public static PDF417Option Truncated = new(1);
 
             public int value;
 

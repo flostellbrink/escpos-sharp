@@ -13,9 +13,9 @@ namespace EscPosSharp
         /// <remarks>@see#setFontName(FontName)</remarks>
         public class FontName
         {
-            public static FontName Font_A_Default = new FontName(48);
-            public static FontName Font_B = new FontName(49);
-            public static FontName Font_C = new FontName(50);
+            public static FontName Font_A_Default = new(48);
+            public static FontName Font_B = new(49);
+            public static FontName Font_C = new(50);
 
             public FontName(int value)
             {
@@ -31,14 +31,14 @@ namespace EscPosSharp
         /// <remarks>@see#setFontSize(FontSize, FontSize)</remarks>
         public class FontSize
         {
-            public static FontSize _1 = new FontSize(0);
-            public static FontSize _2 = new FontSize(1);
-            public static FontSize _3 = new FontSize(2);
-            public static FontSize _4 = new FontSize(3);
-            public static FontSize _5 = new FontSize(4);
-            public static FontSize _6 = new FontSize(5);
-            public static FontSize _7 = new FontSize(6);
-            public static FontSize _8 = new FontSize(7);
+            public static FontSize _1 = new(0);
+            public static FontSize _2 = new(1);
+            public static FontSize _3 = new(2);
+            public static FontSize _4 = new(3);
+            public static FontSize _5 = new(4);
+            public static FontSize _6 = new(5);
+            public static FontSize _7 = new(6);
+            public static FontSize _8 = new(7);
 
             public int value;
 
@@ -54,9 +54,9 @@ namespace EscPosSharp
         /// <remarks>@see#setUnderline(Underline)</remarks>
         public class Underline
         {
-            public static Underline None_Default = new Underline(48);
-            public static Underline OneDotThick = new Underline(49);
-            public static Underline TwoDotThick = new Underline(50);
+            public static Underline None_Default = new(48);
+            public static Underline OneDotThick = new(49);
+            public static Underline TwoDotThick = new(50);
 
             public int value;
 
@@ -72,8 +72,8 @@ namespace EscPosSharp
         /// <remarks>@see#setColorMode(ColorMode)</remarks>
         public class ColorMode
         {
-            public static ColorMode BlackOnWhite_Default = new ColorMode(0);
-            public static ColorMode WhiteOnBlack = new ColorMode(1);
+            public static ColorMode BlackOnWhite_Default = new(0);
+            public static ColorMode WhiteOnBlack = new(1);
 
             public int value;
 
@@ -295,7 +295,7 @@ namespace EscPosSharp
             //
             bytes.WriteByte((byte)ESC);
             bytes.WriteByte((byte)'E');
-            int n = bold ? 1 : 0;
+            var n = bold ? 1 : 0;
             bytes.WriteByte((byte)n);
 
             //

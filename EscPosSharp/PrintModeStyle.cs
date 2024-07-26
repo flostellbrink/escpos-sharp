@@ -15,8 +15,8 @@ namespace EscPosSharp
         /// <remarks>@see#setFontName(FontName)</remarks>
         public class FontName
         {
-            public static FontName Font_A_Default = new FontName(0);
-            public static FontName Font_B = new FontName(1);
+            public static FontName Font_A_Default = new(0);
+            public static FontName Font_B = new(1);
 
             public int value;
 
@@ -174,7 +174,7 @@ namespace EscPosSharp
             using var bytes = new MemoryStream();
 
             // bit combination ...
-            int nVal = fontName.value;
+            var nVal = fontName.value;
 
             //
             //

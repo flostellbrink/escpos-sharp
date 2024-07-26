@@ -12,10 +12,10 @@ namespace EscPosSharp.Image
         /// <remarks>@see#setRasterBitImageMode(RasterBitImageMode)</remarks>
         public class RasterBitImageMode
         {
-            public static RasterBitImageMode Normal_Default = new RasterBitImageMode(0);
-            public static RasterBitImageMode DoubleWidth = new RasterBitImageMode(1);
-            public static RasterBitImageMode DoubleHeight = new RasterBitImageMode(2);
-            public static RasterBitImageMode Quadruple = new RasterBitImageMode(3);
+            public static RasterBitImageMode Normal_Default = new(0);
+            public static RasterBitImageMode DoubleWidth = new(1);
+            public static RasterBitImageMode DoubleHeight = new(2);
+            public static RasterBitImageMode Quadruple = new(3);
 
             public int value;
 
@@ -100,17 +100,17 @@ namespace EscPosSharp.Image
 
             //
             //  bytes in horizontal direction for the bit image
-            int horizontalBytes = image.GetHorizontalBytesOfRaster();
-            int xL = horizontalBytes & 0xFF;
-            int xH = (horizontalBytes & 0xFF00) >> 8;
+            var horizontalBytes = image.GetHorizontalBytesOfRaster();
+            var xL = horizontalBytes & 0xFF;
+            var xH = (horizontalBytes & 0xFF00) >> 8;
 
             //
             //  bits in vertical direction for the bit image
-            int verticalBits = image.GetHeightOfImageInBits();
+            var verticalBits = image.GetHeightOfImageInBits();
 
             // getting first and second bytes separatted
-            int yL = verticalBits & 0xFF;
-            int yH = (verticalBits & 0xFF00) >> 8;
+            var yL = verticalBits & 0xFF;
+            var yH = (verticalBits & 0xFF00) >> 8;
             bytes.WriteByte((byte)xL);
             bytes.WriteByte((byte)xH);
             bytes.WriteByte((byte)yL);

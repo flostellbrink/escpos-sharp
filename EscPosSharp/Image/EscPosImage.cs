@@ -87,9 +87,9 @@ namespace EscPosSharp.Image
         {
             var lRasterRows = new List<byte[]>();
             var lRGBImageRows = new List<CoffeeImage>();
-            for (int y = 0; y < image.GetHeight(); y += bitsPerColumn_8_or_24)
+            for (var y = 0; y < image.GetHeight(); y += bitsPerColumn_8_or_24)
             {
-                int height = bitsPerColumn_8_or_24;
+                var height = bitsPerColumn_8_or_24;
                 if ((y + height) > image.GetHeight())
                 {
                     height = image.GetHeight() - y;
@@ -100,16 +100,16 @@ namespace EscPosSharp.Image
             }
 
             int heightOffset = 0;
-            foreach (CoffeeImage RGBRow in lRGBImageRows)
+            foreach (var RGBRow in lRGBImageRows)
             {
                 var baColumBytes = new MemoryStream();
-                for (int x = 0; x < RGBRow.GetWidth(); x++)
+                for (var x = 0; x < RGBRow.GetWidth(); x++)
                 {
                     int col = 0;
                     int max_y = Math.Min(bitsPerColumn_8_or_24, RGBRow.GetHeight());
                     int bit = 0;
                     int bitsWritten = 0;
-                    for (int y = 0; y < max_y; y++)
+                    for (var y = 0; y < max_y; y++)
                     {
                         int val = GetBitonalVal(x, y + heightOffset);
                         col = col | (val << (7 - bit));
@@ -179,13 +179,13 @@ namespace EscPosSharp.Image
             var byteArray = new MemoryStream();
             int Byte;
             int bit;
-            for (int y = 0; y < image.GetHeight(); y++)
+            for (var y = 0; y < image.GetHeight(); y++)
             {
                 Byte = 0;
                 bit = 0;
-                for (int x = 0; x < image.GetWidth(); x++)
+                for (var x = 0; x < image.GetWidth(); x++)
                 {
-                    int val = GetBitonalVal(x, y);
+                    var val = GetBitonalVal(x, y);
                     Byte = Byte | (val << (7 - bit));
                     bit++;
                     if (bit == 8)

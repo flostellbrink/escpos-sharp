@@ -12,10 +12,10 @@ namespace EscPosSharp.Image
         /// <remarks>@see#setGraphicsImageBxBy(GraphicsImageBxBy)</remarks>
         public class GraphicsImageBxBy
         {
-            public static GraphicsImageBxBy Normal_Default = new GraphicsImageBxBy(1, 1);
-            public static GraphicsImageBxBy DoubleWidth = new GraphicsImageBxBy(2, 1);
-            public static GraphicsImageBxBy DoubleHeight = new GraphicsImageBxBy(1, 2);
-            public static GraphicsImageBxBy Quadruple = new GraphicsImageBxBy(2, 2);
+            public static GraphicsImageBxBy Normal_Default = new(1, 1);
+            public static GraphicsImageBxBy DoubleWidth = new(2, 1);
+            public static GraphicsImageBxBy DoubleHeight = new(1, 2);
+            public static GraphicsImageBxBy Quadruple = new(2, 2);
 
             public int bx;
             public int by;
@@ -101,9 +101,9 @@ namespace EscPosSharp.Image
             bytes.WriteByte((byte)justification.value);
 
             //
-            int paramSize = image.GetRasterSizeInBytes() + 10;
-            int pL = paramSize & 0xFF;
-            int pH = (paramSize & 0xFF00) >> 8;
+            var paramSize = image.GetRasterSizeInBytes() + 10;
+            var pL = paramSize & 0xFF;
+            var pH = (paramSize & 0xFF00) >> 8;
             bytes.WriteByte((byte)GS);
             bytes.WriteByte((byte)'(');
             bytes.WriteByte((byte)'L');
@@ -117,9 +117,9 @@ namespace EscPosSharp.Image
             bytes.WriteByte((byte)49); // c
 
             //  bits in horizontal direction for the bit image
-            int horizontalBits = image.GetWidthOfImageInBits();
-            int xL = horizontalBits & 0xFF;
-            int xH = (horizontalBits & 0xFF00) >> 8;
+            var horizontalBits = image.GetWidthOfImageInBits();
+            var xL = horizontalBits & 0xFF;
+            var xH = (horizontalBits & 0xFF00) >> 8;
 
             //
             //  bits in vertical direction for the bit image

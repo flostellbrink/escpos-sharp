@@ -18,40 +18,40 @@ namespace EscPosSharp.Barcode
         /// </remarks>
         public class BarCodeSystem
         {
-            public static BarCodeSystem UPCA = new BarCodeSystem(0, "\\d{11,12}$");
-            public static BarCodeSystem UPCA_B = new BarCodeSystem(65, "^\\d{11,12}$");
-            public static BarCodeSystem UPCE_A = new BarCodeSystem(
+            public static BarCodeSystem UPCA = new(0, "\\d{11,12}$");
+            public static BarCodeSystem UPCA_B = new(65, "^\\d{11,12}$");
+            public static BarCodeSystem UPCE_A = new(
                 1,
                 "^\\d{6}$|^0{1}\\d{6,7}$|^0{1}\\d{10,11}$"
             );
-            public static BarCodeSystem UPCE_B = new BarCodeSystem(
+            public static BarCodeSystem UPCE_B = new(
                 66,
                 "^\\d{6}$|^0{1}\\d{6,7}$|^0{1}\\d{10,11}$"
             );
-            public static BarCodeSystem JAN13_A = new BarCodeSystem(2, "^\\d{12,13}$");
-            public static BarCodeSystem JAN13_B = new BarCodeSystem(67, "^\\d{12,13}$");
-            public static BarCodeSystem JAN8_A = new BarCodeSystem(3, "^\\d{7,8}$");
-            public static BarCodeSystem JAN8_B = new BarCodeSystem(68, "^\\d{7,8}$");
-            public static BarCodeSystem CODE39_A = new BarCodeSystem(
+            public static BarCodeSystem JAN13_A = new(2, "^\\d{12,13}$");
+            public static BarCodeSystem JAN13_B = new(67, "^\\d{12,13}$");
+            public static BarCodeSystem JAN8_A = new(3, "^\\d{7,8}$");
+            public static BarCodeSystem JAN8_B = new(68, "^\\d{7,8}$");
+            public static BarCodeSystem CODE39_A = new(
                 4,
                 "^[\\d\\p{Upper}\\ \\$\\%\\*\\+\\-\\.\\/]+$"
             );
-            public static BarCodeSystem CODE39_B = new BarCodeSystem(
+            public static BarCodeSystem CODE39_B = new(
                 69,
                 "^[\\d\\p{Upper}\\ \\$\\%\\*\\+\\-\\.\\/]+$"
             );
-            public static BarCodeSystem ITF_A = new BarCodeSystem(5, "^([\\d]{2})+$");
-            public static BarCodeSystem ITF_B = new BarCodeSystem(70, "^([\\d]{2})+$");
-            public static BarCodeSystem CODABAR_A = new BarCodeSystem(
+            public static BarCodeSystem ITF_A = new(5, "^([\\d]{2})+$");
+            public static BarCodeSystem ITF_B = new(70, "^([\\d]{2})+$");
+            public static BarCodeSystem CODABAR_A = new(
                 6,
                 "^[A-Da-d][\\d\\$\\+\\-\\.\\/\\:]*[A-Da-d]$"
             );
-            public static BarCodeSystem CODABAR_B = new BarCodeSystem(
+            public static BarCodeSystem CODABAR_B = new(
                 71,
                 "^[A-Da-d][\\d\\$\\+\\-\\.\\/\\:]*[A-Da-d]$"
             );
-            public static BarCodeSystem CODE93_Default = new BarCodeSystem(72, "^[\\x00-\\x7F]+$");
-            public static BarCodeSystem CODE128 = new BarCodeSystem(73, "^\\{[A-C][\\x00-\\x7F]+$");
+            public static BarCodeSystem CODE93_Default = new(72, "^[\\x00-\\x7F]+$");
+            public static BarCodeSystem CODE128 = new(73, "^\\{[A-C][\\x00-\\x7F]+$");
 
             public int code;
             public string regex;
@@ -71,10 +71,10 @@ namespace EscPosSharp.Barcode
         /// <remarks>@see#setHRIPosition(BarCodeHRIPosition)</remarks>
         public class BarCodeHRIPosition
         {
-            public static BarCodeHRIPosition NotPrinted_Default = new BarCodeHRIPosition(48);
-            public static BarCodeHRIPosition AboveBarCode = new BarCodeHRIPosition(49);
-            public static BarCodeHRIPosition BelowBarCode = new BarCodeHRIPosition(50);
-            public static BarCodeHRIPosition AboveAndBelowBarCode = new BarCodeHRIPosition(51);
+            public static BarCodeHRIPosition NotPrinted_Default = new(48);
+            public static BarCodeHRIPosition AboveBarCode = new(49);
+            public static BarCodeHRIPosition BelowBarCode = new(50);
+            public static BarCodeHRIPosition AboveAndBelowBarCode = new(51);
 
             public int value;
 
@@ -92,9 +92,9 @@ namespace EscPosSharp.Barcode
         /// <remarks>@see#setHRIFont(BarCodeHRIFont)</remarks>
         public class BarCodeHRIFont
         {
-            public static BarCodeHRIFont Font_A_Default = new BarCodeHRIFont(48);
-            public static BarCodeHRIFont Font_B = new BarCodeHRIFont(49);
-            public static BarCodeHRIFont Font_C = new BarCodeHRIFont(50);
+            public static BarCodeHRIFont Font_A_Default = new(48);
+            public static BarCodeHRIFont Font_B = new(49);
+            public static BarCodeHRIFont Font_C = new(50);
 
             public int value;
 

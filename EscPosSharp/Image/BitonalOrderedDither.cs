@@ -69,16 +69,16 @@ namespace EscPosSharp.Image
                 throw new ArgumentException("thresholdMax must be >= thresholdMin");
             }
 
-            float matrixSize = (float)(matrixWidth * matrixHeight);
-            float thresholdUtil = (float)(thresholdMax - thresholdMin);
-            float valueToBeAddedOnEachPosition = (float)thresholdUtil / (matrixSize - 1F);
-            float positionValue = (float)thresholdMin;
-            Random randomCoordinates = new Random(1);
-            int[] shuffledX = Shuffle(matrixWidth, randomCoordinates);
-            int[] shuffledY = Shuffle(matrixHeight, randomCoordinates);
-            for (int x = 0; x < matrixWidth; x++)
+            var matrixSize = (float)(matrixWidth * matrixHeight);
+            var thresholdUtil = (float)(thresholdMax - thresholdMin);
+            var valueToBeAddedOnEachPosition = (float)thresholdUtil / (matrixSize - 1F);
+            var positionValue = (float)thresholdMin;
+            var randomCoordinates = new Random(1);
+            var shuffledX = Shuffle(matrixWidth, randomCoordinates);
+            var shuffledY = Shuffle(matrixHeight, randomCoordinates);
+            for (var x = 0; x < matrixWidth; x++)
             {
-                for (int y = 0; y < matrixHeight; y++)
+                for (var y = 0; y < matrixHeight; y++)
                 {
                     ditherMatrix[shuffledX[x], shuffledY[y]] = (int)Math.Round(positionValue);
                     positionValue += valueToBeAddedOnEachPosition;
@@ -96,9 +96,9 @@ namespace EscPosSharp.Image
         /// <param name="thresholdMax">max threshold must be between 0 and 255. 0 is lighter and 255 is darker.</param>
         private int[] Shuffle(int size, Random random)
         {
-            HashSet<int> set = new HashSet<int>();
-            int[] intArray = new int[size];
-            int i = 0;
+            var set = new HashSet<int>();
+            var intArray = new int[size];
+            var i = 0;
             while (set.Count < size)
             {
                 int val = random.Next(size);
@@ -144,13 +144,13 @@ namespace EscPosSharp.Image
         /// <remarks>@seeBitonal#zeroOrOne(int, int, int, int, int, int)</remarks>
         public override int ZeroOrOne(int alpha, int red, int green, int blue, int x, int y)
         {
-            int luminance = 0xFF;
+            var luminance = 0xFF;
             if (alpha > 127)
             {
                 luminance = (red + green + blue) / 3;
             }
 
-            int threshold = ditherMatrix[x % matrixWidth, y % matrixHeight];
+            var threshold = ditherMatrix[x % matrixWidth, y % matrixHeight];
             return (luminance < threshold) ? 1 : 0;
         }
     }

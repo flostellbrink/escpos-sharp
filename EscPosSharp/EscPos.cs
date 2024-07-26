@@ -18,76 +18,76 @@ namespace EscPosSharp
         /// <remarks>@see#setCharacterCodeTable(CharacterCodeTable)</remarks>
         public class CharacterCodeTable
         {
-            public static CharacterCodeTable CP437_USA_Standard_Europe = new CharacterCodeTable(
+            public static CharacterCodeTable CP437_USA_Standard_Europe = new(
                 0,
                 "cp437"
             );
-            public static CharacterCodeTable Katakana = new CharacterCodeTable(1);
-            public static CharacterCodeTable CP850_Multilingual = new CharacterCodeTable(
+            public static CharacterCodeTable Katakana = new(1);
+            public static CharacterCodeTable CP850_Multilingual = new(
                 2,
                 "cp850"
             );
-            public static CharacterCodeTable CP860_Portuguese = new CharacterCodeTable(3, "cp860");
-            public static CharacterCodeTable CP863_Canadian_French = new CharacterCodeTable(
+            public static CharacterCodeTable CP860_Portuguese = new(3, "cp860");
+            public static CharacterCodeTable CP863_Canadian_French = new(
                 4,
                 "cp863"
             );
-            public static CharacterCodeTable CP865_Nordic = new CharacterCodeTable(5, "cp865");
-            public static CharacterCodeTable CP851_Greek = new CharacterCodeTable(11);
-            public static CharacterCodeTable CP853_Turkish = new CharacterCodeTable(12);
-            public static CharacterCodeTable CP857_Turkish = new CharacterCodeTable(13, "cp857");
-            public static CharacterCodeTable CP737_Greek = new CharacterCodeTable(14, "cp737");
-            public static CharacterCodeTable ISO8859_7_Greek = new CharacterCodeTable(
+            public static CharacterCodeTable CP865_Nordic = new(5, "cp865");
+            public static CharacterCodeTable CP851_Greek = new(11);
+            public static CharacterCodeTable CP853_Turkish = new(12);
+            public static CharacterCodeTable CP857_Turkish = new(13, "cp857");
+            public static CharacterCodeTable CP737_Greek = new(14, "cp737");
+            public static CharacterCodeTable ISO8859_7_Greek = new(
                 15,
                 "iso8859_7"
             );
-            public static CharacterCodeTable WPC1252 = new CharacterCodeTable(16, "cp1252");
-            public static CharacterCodeTable CP866_Cyrillic_2 = new CharacterCodeTable(17, "cp866");
-            public static CharacterCodeTable CP852_Latin2 = new CharacterCodeTable(18, "cp852");
-            public static CharacterCodeTable CP858_Euro = new CharacterCodeTable(19, "cp858");
-            public static CharacterCodeTable KU42_Thai = new CharacterCodeTable(20);
-            public static CharacterCodeTable TIS11_Thai = new CharacterCodeTable(21);
-            public static CharacterCodeTable TIS18_Thai = new CharacterCodeTable(26);
-            public static CharacterCodeTable TCVN_3_1_Vietnamese = new CharacterCodeTable(30);
-            public static CharacterCodeTable TCVN_3_2_Vietnamese = new CharacterCodeTable(31);
-            public static CharacterCodeTable PC720_Arabic = new CharacterCodeTable(32);
-            public static CharacterCodeTable WPC775_BalticRim = new CharacterCodeTable(33);
-            public static CharacterCodeTable CP855_Cyrillic = new CharacterCodeTable(34, "cp855");
-            public static CharacterCodeTable CP861_Icelandic = new CharacterCodeTable(35, "cp861");
-            public static CharacterCodeTable CP862_Hebrew = new CharacterCodeTable(36, "cp862");
-            public static CharacterCodeTable CP864_Arabic = new CharacterCodeTable(37, "cp864");
-            public static CharacterCodeTable CP869_Greek = new CharacterCodeTable(38, "cp869");
-            public static CharacterCodeTable ISO8859_2_Latin2 = new CharacterCodeTable(
+            public static CharacterCodeTable WPC1252 = new(16, "cp1252");
+            public static CharacterCodeTable CP866_Cyrillic_2 = new(17, "cp866");
+            public static CharacterCodeTable CP852_Latin2 = new(18, "cp852");
+            public static CharacterCodeTable CP858_Euro = new(19, "cp858");
+            public static CharacterCodeTable KU42_Thai = new(20);
+            public static CharacterCodeTable TIS11_Thai = new(21);
+            public static CharacterCodeTable TIS18_Thai = new(26);
+            public static CharacterCodeTable TCVN_3_1_Vietnamese = new(30);
+            public static CharacterCodeTable TCVN_3_2_Vietnamese = new(31);
+            public static CharacterCodeTable PC720_Arabic = new(32);
+            public static CharacterCodeTable WPC775_BalticRim = new(33);
+            public static CharacterCodeTable CP855_Cyrillic = new(34, "cp855");
+            public static CharacterCodeTable CP861_Icelandic = new(35, "cp861");
+            public static CharacterCodeTable CP862_Hebrew = new(36, "cp862");
+            public static CharacterCodeTable CP864_Arabic = new(37, "cp864");
+            public static CharacterCodeTable CP869_Greek = new(38, "cp869");
+            public static CharacterCodeTable ISO8859_2_Latin2 = new(
                 39,
                 "iso8859_2"
             );
-            public static CharacterCodeTable ISO8859_15_Latin9 = new CharacterCodeTable(
+            public static CharacterCodeTable ISO8859_15_Latin9 = new(
                 40,
                 "iso8859_15"
             );
-            public static CharacterCodeTable CP1098_Farsi = new CharacterCodeTable(41, "cp1098");
-            public static CharacterCodeTable CP1118_Lithuanian = new CharacterCodeTable(42);
-            public static CharacterCodeTable CP1119_Lithuanian = new CharacterCodeTable(43);
-            public static CharacterCodeTable CP1125_Ukrainian = new CharacterCodeTable(44);
-            public static CharacterCodeTable WCP1250_Latin2 = new CharacterCodeTable(45, "cp1250");
-            public static CharacterCodeTable WCP1251_Cyrillic = new CharacterCodeTable(
+            public static CharacterCodeTable CP1098_Farsi = new(41, "cp1098");
+            public static CharacterCodeTable CP1118_Lithuanian = new(42);
+            public static CharacterCodeTable CP1119_Lithuanian = new(43);
+            public static CharacterCodeTable CP1125_Ukrainian = new(44);
+            public static CharacterCodeTable WCP1250_Latin2 = new(45, "cp1250");
+            public static CharacterCodeTable WCP1251_Cyrillic = new(
                 46,
                 "cp1251"
             );
-            public static CharacterCodeTable WCP1253_Greek = new CharacterCodeTable(47, "cp1253");
-            public static CharacterCodeTable WCP1254_Turkish = new CharacterCodeTable(48, "cp1254");
-            public static CharacterCodeTable WCP1255_Hebrew = new CharacterCodeTable(49, "cp1255");
-            public static CharacterCodeTable WCP1256_Arabic = new CharacterCodeTable(50, "cp1256");
-            public static CharacterCodeTable WCP1257_BalticRim = new CharacterCodeTable(
+            public static CharacterCodeTable WCP1253_Greek = new(47, "cp1253");
+            public static CharacterCodeTable WCP1254_Turkish = new(48, "cp1254");
+            public static CharacterCodeTable WCP1255_Hebrew = new(49, "cp1255");
+            public static CharacterCodeTable WCP1256_Arabic = new(50, "cp1256");
+            public static CharacterCodeTable WCP1257_BalticRim = new(
                 51,
                 "cp1257"
             );
-            public static CharacterCodeTable WCP1258_Vietnamese = new CharacterCodeTable(
+            public static CharacterCodeTable WCP1258_Vietnamese = new(
                 52,
                 "cp1258"
             );
-            public static CharacterCodeTable KZ_1048_Kazakhstan = new CharacterCodeTable(53);
-            public static CharacterCodeTable User_defined_page = new CharacterCodeTable(255);
+            public static CharacterCodeTable KZ_1048_Kazakhstan = new(53);
+            public static CharacterCodeTable User_defined_page = new(255);
 
             public int value;
             public string charsetName;
@@ -111,8 +111,8 @@ namespace EscPosSharp
         /// <remarks>@see#cut(CutMode)</remarks>
         public class CutMode
         {
-            public static CutMode FULL = new CutMode(48);
-            public static CutMode PART = new CutMode(49);
+            public static CutMode FULL = new(48);
+            public static CutMode PART = new(49);
 
             public int value;
 
@@ -128,8 +128,8 @@ namespace EscPosSharp
         /// <remarks>@see#pulsePin(PinConnector, int, int)</remarks>
         public class PinConnector
         {
-            public static PinConnector Pin_2 = new PinConnector(48);
-            public static PinConnector Pin_5 = new PinConnector(49);
+            public static PinConnector Pin_2 = new(48);
+            public static PinConnector Pin_5 = new(49);
 
             public int value;
 
@@ -527,7 +527,7 @@ namespace EscPosSharp
 
             Write(style.GetConfigBytes());
 
-            for (int n = 0; n < nLines; n++)
+            for (var n = 0; n < nLines; n++)
             {
                 Write(LF);
             }

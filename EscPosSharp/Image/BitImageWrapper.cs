@@ -12,13 +12,13 @@ namespace EscPosSharp.Image
         /// <remarks>@see#setMode(BitImageMode)</remarks>
         public class BitImageMode
         {
-            public static BitImageMode _8DotSingleDensity = new BitImageMode(0, 8);
+            public static BitImageMode _8DotSingleDensity = new(0, 8);
 
-            public static BitImageMode _8DotDoubleDensity = new BitImageMode(1, 8);
+            public static BitImageMode _8DotDoubleDensity = new(1, 8);
 
-            public static BitImageMode _24DotSingleDensity = new BitImageMode(32, 24);
+            public static BitImageMode _24DotSingleDensity = new(32, 24);
 
-            public static BitImageMode _24DotDoubleDensity_Default = new BitImageMode(33, 24);
+            public static BitImageMode _24DotDoubleDensity_Default = new(33, 24);
 
             public int value;
             public int bitsForVerticalData;
@@ -104,8 +104,8 @@ namespace EscPosSharp.Image
             bytes.WriteByte((byte)16);
 
             // getting first and second bytes separatted
-            int nL = image.GetWidthOfImageInBits() & 0xFF;
-            int nH = (image.GetWidthOfImageInBits() & 0xFF00) >> 8;
+            var nL = image.GetWidthOfImageInBits() & 0xFF;
+            var nH = (image.GetWidthOfImageInBits() & 0xFF00) >> 8;
             var RasterColumns = image.GetRasterRows(mode.bitsForVerticalData);
             foreach (var rol in RasterColumns)
             {

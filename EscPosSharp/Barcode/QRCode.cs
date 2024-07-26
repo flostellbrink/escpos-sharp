@@ -13,8 +13,8 @@ namespace EscPosSharp.Barcode
         /// <remarks>@see#setModel(QRModel)</remarks>
         public class QRModel
         {
-            public static QRModel _1_Default = new QRModel(48);
-            public static QRModel _2 = new QRModel(49);
+            public static QRModel _1_Default = new(48);
+            public static QRModel _2 = new(49);
 
             public int value;
 
@@ -32,24 +32,24 @@ namespace EscPosSharp.Barcode
             /// <summary>
             /// 7%
             /// </summary>
-            public static QRErrorCorrectionLevel QR_ECLEVEL_L = new QRErrorCorrectionLevel(48);
+            public static QRErrorCorrectionLevel QR_ECLEVEL_L = new(48);
 
             /// <summary>
             /// 15%
             /// </summary>
-            public static QRErrorCorrectionLevel QR_ECLEVEL_M_Default = new QRErrorCorrectionLevel(
+            public static QRErrorCorrectionLevel QR_ECLEVEL_M_Default = new(
                 49
             );
 
             /// <summary>
             /// 25%
             /// </summary>
-            public static QRErrorCorrectionLevel QR_ECLEVEL_Q = new QRErrorCorrectionLevel(50);
+            public static QRErrorCorrectionLevel QR_ECLEVEL_Q = new(50);
 
             /// <summary>
             /// 30%
             /// </summary>
-            public static QRErrorCorrectionLevel QR_ECLEVEL_H = new QRErrorCorrectionLevel(51);
+            public static QRErrorCorrectionLevel QR_ECLEVEL_H = new(51);
 
             public int value;
 
@@ -257,9 +257,9 @@ namespace EscPosSharp.Barcode
             bytes.WriteByte((byte)errorCorrectionLevel.value); // n
 
             // Function 080
-            int numberOfBytes = data.Length + 3;
-            int pL = numberOfBytes & 0xFF;
-            int pH = (numberOfBytes & 0xFF00) >> 8;
+            var numberOfBytes = data.Length + 3;
+            var pL = numberOfBytes & 0xFF;
+            var pH = (numberOfBytes & 0xFF00) >> 8;
             bytes.WriteByte((byte)GS);
             bytes.WriteByte((byte)'(');
             bytes.WriteByte((byte)'k');

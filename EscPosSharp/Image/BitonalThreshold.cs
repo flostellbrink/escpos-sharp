@@ -43,7 +43,7 @@ namespace EscPosSharp.Image
         /// <remarks>@seeBitonal#zeroOrOne(int, int, int, int, int, int)</remarks>
         public override int ZeroOrOne(int alpha, int red, int green, int blue, int x, int y)
         {
-            int luminance = 0xFF;
+            var luminance = 0xFF;
             if (alpha > 127)
             {
                 luminance = (red + green + blue) / 3;
