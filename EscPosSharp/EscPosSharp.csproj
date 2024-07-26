@@ -11,6 +11,7 @@
 
     <Authors>flostellbrink</Authors>
     <Description>Library for generating ESC/POS commands for thermal printers</Description>
+    <RepositoryUrl>https://github.com/flostellbrink/escpos-sharp</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Version>1.0.3</Version>
