@@ -1,9 +1,12 @@
 # EscPosSharp
 
-Based on [https://github.com/anastaciocintra/escpos-coffee](https://github.com/anastaciocintra/escpos-coffee)
+[![NuGet](https://img.shields.io/nuget/v/EscPosSharp.svg)](https://www.nuget.org/packages/EscPosSharp/)
 
-.NET library for ESC/POS printer commands. Can send text, images and barcodes to the printer.
-All commands are sent to one Stream, then you can redirect to printer, file or network.
+
+
+Library for generating ESC/POS commands for thermal printers. Based on [escpos-coffee](https://github.com/anastaciocintra/escpos-coffee).
+
+Supports styled text, images, barcodes, and QR codes.
 
 > [!WARNING]  
 > Tests indicate that ordered dithering is not working. Not using that myself, open for PRs.
