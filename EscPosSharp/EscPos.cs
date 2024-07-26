@@ -199,6 +199,15 @@ namespace EscPosSharp
         }
 
         /// <summary>
+        /// Writes bytes directly to outputStream. Can be used to send customizes
+        /// commands to printer.
+        /// </summary>
+        public virtual EscPos Write(byte[] b)
+        {
+            return Write(b, 0, b.Length);
+        }
+
+        /// <summary>
         /// call outputStrem.flush().
         /// </summary>
         /// <exception cref="IOException">if an I/O error occurs.</exception>
@@ -352,10 +361,8 @@ namespace EscPosSharp
         /// <remarks>@see#setCharsetName(java.lang.String)</remarks>
         public virtual EscPos Write(Style style, string text)
         {
-            byte[] configBytes = style.GetConfigBytes();
-            Write(configBytes, 0, configBytes.Length);
-            var bytes = GetEncoding().GetBytes(text);
-            this.outputStream.Write(bytes, 0, bytes.Length);
+            Write(style.GetConfigBytes());
+            Write(GetEncoding().GetBytes(text));
             return this;
         }
 
@@ -378,10 +385,8 @@ namespace EscPosSharp
         /// </remarks>
         public virtual EscPos Write(PrintModeStyle printModeStyle, string text)
         {
-            byte[] configBytes = printModeStyle.GetConfigBytes();
-            Write(configBytes, 0, configBytes.Length);
-            var bytes = GetEncoding().GetBytes(text);
-            this.outputStream.Write(bytes, 0, bytes.Length);
+            Write(printModeStyle.GetConfigBytes());
+            Write(GetEncoding().GetBytes(text));
             return this;
         }
 
@@ -470,8 +475,7 @@ namespace EscPosSharp
         /// <remarks>@seeBarCodeWrapperInterface</remarks>
         public virtual EscPos Write<T>(BarCodeWrapperInterface<T> barcode, string data)
         {
-            byte[] bytes = barcode.GetBytes(data);
-            Write(bytes, 0, bytes.Length);
+            Write(barcode.GetBytes(data));
             return this;
         }
 
@@ -485,8 +489,7 @@ namespace EscPosSharp
         /// <remarks>@seeImageWrapperInterface</remarks>
         public virtual EscPos Write<T>(ImageWrapperInterface<T> wrapper, EscPosImage image)
         {
-            byte[] bytes = wrapper.GetBytes(image);
-            Write(bytes, 0, bytes.Length);
+            Write(wrapper.GetBytes(image));
             return this;
         }
 
@@ -522,8 +525,8 @@ namespace EscPosSharp
                 throw new ArgumentException("nLines must be between 1 and 255");
             }
 
-            byte[] configBytes = style.GetConfigBytes();
-            Write(configBytes, 0, configBytes.Length);
+            Write(style.GetConfigBytes());
+
             for (int n = 0; n < nLines; n++)
             {
                 Write(LF);

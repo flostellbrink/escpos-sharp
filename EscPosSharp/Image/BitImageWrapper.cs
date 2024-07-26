@@ -116,6 +116,7 @@ namespace EscPosSharp.Image
                 bytes.WriteByte((byte)mode.value);
                 bytes.WriteByte((byte)nL);
                 bytes.WriteByte((byte)nH);
+                rol.Position = 0;
                 rol.CopyTo(bytes);
                 bytes.WriteByte((byte)LF);
             }
