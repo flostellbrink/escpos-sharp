@@ -216,7 +216,7 @@ public class PDF417 : EscPosConst, BarCodeWrapperInterface<PDF417>
     /// <remarks>@see#getBytes(java.lang.String)</remarks>
     public virtual PDF417 SetWidth(int width)
     {
-        if ((width < 2 || width > 8))
+        if (width < 2 || width > 8)
         {
             throw new ArgumentException("width must be between 2 and 8");
         }
@@ -236,7 +236,7 @@ public class PDF417 : EscPosConst, BarCodeWrapperInterface<PDF417>
     /// <remarks>@see#getBytes(java.lang.String)</remarks>
     public virtual PDF417 SetHeight(int height)
     {
-        if ((height < 2 || height > 8))
+        if (height < 2 || height > 8)
         {
             throw new ArgumentException("height must be between 2 and 8");
         }
