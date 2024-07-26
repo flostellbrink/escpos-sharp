@@ -214,7 +214,7 @@ public class BarCode : EscPosConst, BarCodeWrapperInterface<BarCode>
 
         if (!Regex.IsMatch(data, sytem.regex))
         {
-            throw new ArgumentException(String.Format("data must match with \"%s\"", sytem.regex));
+            throw new ArgumentException(string.Format("data must match with \"%s\"", sytem.regex));
         }
 
         //
