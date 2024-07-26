@@ -4,7 +4,7 @@ namespace EscPosSharp.Image
     /// Supply ESC/POS Raster bit Image commands.
     /// using <code>GS 'v' '0'</code>
     /// </summary>
-    public class RasterBitImageWrapper : EscPosConst, ImageWrapperInterface<RasterBitImageWrapper>
+    public class RasterBitImageWrapper : EscPosConst, ImageWrapperInterface
     {
         /// <summary>
         /// Values for Raster Bit Image mode.
