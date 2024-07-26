@@ -4,7 +4,7 @@ namespace EscPosSharp.Image;
 /// Supply ESC/POS Graphics print Image commands.
 /// using <code>GS(L</code>
 /// </summary>
-public class GraphicsImageWrapper : EscPosConst, ImageWrapperInterface
+public class GraphicsImageWrapper : EscPosConst, IImageWrapperInterface
 {
     /// <summary>
     /// Values for Raster Bit Image mode.

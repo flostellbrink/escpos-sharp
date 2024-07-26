@@ -5,7 +5,7 @@ namespace EscPosSharp.Image;
 /// </summary>
 public class EscPosImage
 {
-    protected readonly CoffeeImage image;
+    protected readonly ICoffeeImage image;
     protected readonly Bitonal bitonalAlgorithm;
     protected byte[]? baCachedEscPosRaster = null;
     protected List<byte[]> CashedEscPosRasterRows_8 = new();
@@ -17,7 +17,7 @@ public class EscPosImage
     /// <param name="image">normal RGB image</param>
     /// <param name="bitonalAlgorithm">Algorithm that transform RGB to bitonal</param>
     /// <remarks>@see#getBitonalVal(int, int)</remarks>
-    public EscPosImage(CoffeeImage image, Bitonal bitonalAlgorithm)
+    public EscPosImage(ICoffeeImage image, Bitonal bitonalAlgorithm)
     {
         this.image = image;
         this.bitonalAlgorithm = bitonalAlgorithm;
@@ -84,7 +84,7 @@ public class EscPosImage
     protected virtual List<byte[]> Image2Rows(int bitsPerColumn_8_or_24)
     {
         var lRasterRows = new List<byte[]>();
-        var lRGBImageRows = new List<CoffeeImage>();
+        var lRGBImageRows = new List<ICoffeeImage>();
         for (var y = 0; y < image.GetHeight(); y += bitsPerColumn_8_or_24)
         {
             var height = bitsPerColumn_8_or_24;

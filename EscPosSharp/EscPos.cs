@@ -460,7 +460,7 @@ public class EscPos : EscPosConst, IDisposable
     /// <returns>this object</returns>
     /// <exception cref="IOException">if an I/O error occurs.</exception>
     /// <remarks>@seeImageWrapperInterface</remarks>
-    public virtual EscPos Write(ImageWrapperInterface wrapper, EscPosImage image)
+    public virtual EscPos Write(IImageWrapperInterface wrapper, EscPosImage image)
     {
         Write(wrapper.GetBytes(image));
         return this;

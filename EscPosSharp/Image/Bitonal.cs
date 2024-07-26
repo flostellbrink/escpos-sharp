@@ -22,7 +22,7 @@ public abstract class Bitonal
     ///          the pixel</param>
     /// <returns> call zeroOrOne to make decision (0 or 1)</returns>
     /// <remarks>@see#zeroOrOne(int, int, int, int, int, int)</remarks>
-    public virtual int GetBitonalVal(CoffeeImage image, int x, int y)
+    public virtual int GetBitonalVal(ICoffeeImage image, int x, int y)
     {
         var RGBA = image.GetARGB(x, y);
         var alpha = (RGBA >> 24) & 0xFF;

@@ -7,7 +7,7 @@ namespace EscPosSharp.Image;
 /// @seeCoffeeImageImpl
 /// @see<a href="https://github.com/anastaciocintra/AdroidEscposCoffee">EscPosCoffee image on Android</a>
 /// </remarks>
-public interface CoffeeImage
+public interface ICoffeeImage
 {
     /// <summary>
     /// Returns the width of the image
@@ -31,7 +31,7 @@ public interface CoffeeImage
     /// <param name="h">- the height of the specified rectangular region</param>
     /// <returns>a CoffeeImage that is the subimage of this CoffeeImage.</returns>
     /// <remarks>@seeBufferedImage#getSubimage(int, int, int, int)</remarks>
-    CoffeeImage GetSubimage(int x, int y, int w, int h);
+    ICoffeeImage GetSubimage(int x, int y, int w, int h);
 
     /// <summary>
     /// Returns an integer pixel in the default RGB color model (TYPE_INT_ARGB) and default sRGB colorspace.

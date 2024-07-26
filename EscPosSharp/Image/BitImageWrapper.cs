@@ -4,7 +4,7 @@ namespace EscPosSharp.Image;
 /// Supply ESC/POS Bit Image commands.
 /// using <code>ESC '*'</code>
 /// </summary>
-public class BitImageWrapper : EscPosConst, ImageWrapperInterface
+public class BitImageWrapper : EscPosConst, IImageWrapperInterface
 {
     /// <summary>
     /// Values for Bit Image Mode.

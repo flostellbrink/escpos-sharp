@@ -9,7 +9,7 @@ namespace EscPosSharp.Image;
 /// @seeCoffeeImage
 /// @seeBufferedImage
 /// </remarks>
-public class CoffeeImageImpl : CoffeeImage
+public class CoffeeImageImpl : ICoffeeImage
 {
     protected Bitmap image;
 
@@ -28,7 +28,7 @@ public class CoffeeImageImpl : CoffeeImage
         return image.Height;
     }
 
-    public virtual CoffeeImage GetSubimage(int x, int y, int w, int h)
+    public virtual ICoffeeImage GetSubimage(int x, int y, int w, int h)
     {
         var newImage = new Bitmap(w, h);
         using var graphics = Graphics.FromImage(newImage);
