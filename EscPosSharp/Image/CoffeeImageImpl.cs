@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace EscPosSharp.Image
 {
@@ -16,6 +17,10 @@ namespace EscPosSharp.Image
         public CoffeeImageImpl(Bitmap image)
         {
             this.image = image;
+
+            Directory.CreateDirectory("output");
+            var id = Guid.NewGuid().ToString();
+            image.Save($"output/{image.Width}x{image.Height}-{id}.png", ImageFormat.Png);
         }
 
         public virtual int GetWidth()

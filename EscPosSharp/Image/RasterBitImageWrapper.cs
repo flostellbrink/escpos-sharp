@@ -119,8 +119,7 @@ namespace EscPosSharp.Image
 
             // write raster bytes
             var rasterBytes = image.GetRasterBytes();
-            rasterBytes.Position = 0;
-            rasterBytes.CopyTo(bytes);
+            bytes.Write(rasterBytes, 0, rasterBytes.Length);
 
             //
             return bytes.ToArray();

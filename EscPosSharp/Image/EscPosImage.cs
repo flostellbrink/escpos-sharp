@@ -7,9 +7,9 @@ namespace EscPosSharp.Image
     {
         protected readonly CoffeeImage image;
         protected readonly Bitonal bitonalAlgorithm;
-        protected MemoryStream baCachedEscPosRaster = new();
-        protected List<MemoryStream> CashedEscPosRasterRows_8 = new();
-        protected List<MemoryStream> CachedEscPosRasterRows_24 = new();
+        protected byte[]? baCachedEscPosRaster = null;
+        protected List<byte[]> CashedEscPosRasterRows_8 = new();
+        protected List<byte[]> CachedEscPosRasterRows_24 = new();
 
         /// <summary>
         /// creates an EscPosImage
@@ -42,7 +42,7 @@ namespace EscPosSharp.Image
 
         public virtual int GetRasterSizeInBytes()
         {
-            if (baCachedEscPosRaster.Length > 0)
+            if (baCachedEscPosRaster?.Length > 0)
                 return (int)baCachedEscPosRaster.Length;
             baCachedEscPosRaster = Image2EscPosRaster();
             return (int)baCachedEscPosRaster.Length;
@@ -54,7 +54,7 @@ namespace EscPosSharp.Image
         /// </summary>
         /// <param name="bitsPerColumn_8_or_24">possible values are 8 or 24</param>
         /// <returns>a list of rows in raster pattern</returns>
-        public virtual IList<MemoryStream> GetRasterRows(int bitsPerColumn_8_or_24)
+        public virtual IList<byte[]> GetRasterRows(int bitsPerColumn_8_or_24)
         {
             if (bitsPerColumn_8_or_24 == 8)
             {
@@ -83,9 +83,9 @@ namespace EscPosSharp.Image
         /// </summary>
         /// <param name="bitsPerColumn_8_or_24">possible values are 8 or 24</param>
         /// <returns>a list of rows in raster pattern</returns>
-        protected virtual List<MemoryStream> Image2Rows(int bitsPerColumn_8_or_24)
+        protected virtual List<byte[]> Image2Rows(int bitsPerColumn_8_or_24)
         {
-            var lRasterRows = new List<MemoryStream>();
+            var lRasterRows = new List<byte[]>();
             var lRGBImageRows = new List<CoffeeImage>();
             for (int y = 0; y < image.GetHeight(); y += bitsPerColumn_8_or_24)
             {
@@ -135,7 +135,7 @@ namespace EscPosSharp.Image
                     }
                 }
 
-                lRasterRows.Add(baColumBytes);
+                lRasterRows.Add(baColumBytes.ToArray());
                 heightOffset += bitsPerColumn_8_or_24;
             }
 
@@ -147,9 +147,9 @@ namespace EscPosSharp.Image
         /// Utilize cached bytes if available.
         /// </summary>
         /// <returns>bytes of raster image.</returns>
-        public virtual MemoryStream GetRasterBytes()
+        public virtual byte[] GetRasterBytes()
         {
-            if (baCachedEscPosRaster.Length > 0)
+            if (baCachedEscPosRaster?.Length > 0)
                 return baCachedEscPosRaster;
             baCachedEscPosRaster = Image2EscPosRaster();
             return baCachedEscPosRaster;
@@ -174,7 +174,7 @@ namespace EscPosSharp.Image
         /// transform RGB image in raster format.
         /// </summary>
         /// <returns>raster byte array</returns>
-        protected virtual MemoryStream Image2EscPosRaster()
+        protected virtual byte[] Image2EscPosRaster()
         {
             var byteArray = new MemoryStream();
             int Byte;
@@ -202,7 +202,7 @@ namespace EscPosSharp.Image
                 }
             }
 
-            return byteArray;
+            return byteArray.ToArray();
         }
     }
 }
