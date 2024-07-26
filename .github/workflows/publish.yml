@@ -23,7 +23,8 @@ jobs:
       - name: Test
         run: dotnet test
       - name: Publish
+        if: github.event_name == 'push'
         run: |
           cp .\README.md .\EscPosSharp\
           dotnet pack --configuration Release --output nupkgs
-          dotnet nuget push .\nupkgs\*.nupkg --skip-duplicate --no-symbols true
+          dotnet nuget push .\nupkgs\*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
