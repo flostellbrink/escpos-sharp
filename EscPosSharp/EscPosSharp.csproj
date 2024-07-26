@@ -8,10 +8,12 @@
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>CS8618</NoWarn>
+
+    <Authors>flostellbrink</Authors>
+    <Description>Library for generating ESC/POS commands for thermal printers</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Version>1.0.2</Version>
-
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
