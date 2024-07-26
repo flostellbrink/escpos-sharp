@@ -1,8 +1,7 @@
-namespace EscPosSharp.Barcode
+namespace EscPosSharp.Barcode;
+
+public interface BarCodeWrapperInterface<T>
 {
-    public interface BarCodeWrapperInterface<T>
-    {
-        byte[] GetBytes(string data);
-        T SetJustification(Justification justification);
-    }
+    byte[] GetBytes(string data);
+    T SetJustification(Justification justification);
 }

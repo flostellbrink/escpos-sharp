@@ -1,8 +1,7 @@
-namespace EscPosSharp.Image
+namespace EscPosSharp.Image;
+
+public interface ImageWrapperInterface
 {
-    public interface ImageWrapperInterface
-    {
-        byte[] GetBytes(EscPosImage image);
-        void SetJustification(Justification justification);
-    }
+    byte[] GetBytes(EscPosImage image);
+    void SetJustification(Justification justification);
 }
