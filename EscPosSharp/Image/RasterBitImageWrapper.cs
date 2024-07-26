@@ -52,10 +52,9 @@ namespace EscPosSharp.Image
         /// </summary>
         /// <param name="justification">left, center or right</param>
         /// <returns>this object</returns>
-        public virtual RasterBitImageWrapper SetJustification(Justification justification)
+        public virtual void SetJustification(Justification justification)
         {
             this.justification = justification;
-            return this;
         }
 
         /// <summary>
