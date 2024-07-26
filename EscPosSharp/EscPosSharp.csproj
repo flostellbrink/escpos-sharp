@@ -8,7 +8,13 @@
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>CS8618</NoWarn>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>1.0.1</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <Using Remove="System.Net.Http" />
@@ -23,5 +29,4 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45'">
     <Reference Include="System.Drawing" />
   </ItemGroup>
-
 </Project>
