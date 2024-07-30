@@ -2,11 +2,11 @@
 
 [![NuGet](https://img.shields.io/nuget/v/EscPosSharp.svg)](https://www.nuget.org/packages/EscPosSharp/)
 
-
-
 Library for generating ESC/POS commands for thermal printers. Based on [escpos-coffee](https://github.com/anastaciocintra/escpos-coffee).
 
 Supports styled text, images, barcodes, and QR codes.
+
+Compatible with .NET Standard 2.0 and .NET Framework 4.5 for legacy clients.
 
 > [!WARNING]  
 > Tests indicate that ordered dithering is not working. Not using that myself, open for PRs.
